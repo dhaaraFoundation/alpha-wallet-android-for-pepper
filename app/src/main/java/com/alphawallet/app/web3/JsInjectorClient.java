@@ -37,10 +37,10 @@ public class JsInjectorClient {
     private final Context context;
     private final OkHttpClient httpClient;
 
-    private long chainId = 1;
+    private long chainId = 1807;//1;
     private Address walletAddress;
     //Note: this default RPC is overriden before injection
-    private String rpcUrl = EthereumNetworkRepository.getDefaultNodeURL(MAINNET_ID);
+    private String rpcUrl = "https://rabbit.analog-rpc.com";//EthereumNetworkRepository.getDefaultNodeURL(MAINNET_ID);
 
     public JsInjectorClient(Context context) {
         this.context = context;
