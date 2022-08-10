@@ -18,15 +18,15 @@
             app:contentInsetStart="0dp"
             app:contentInsetStartWithNavigation="0dp" />
 
-        <com.google.android.material.tabs.TabLayout
+        <!--<com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             style="@style/Aw.Component.TabLayout.Fixed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            app:layout_scrollFlags="enterAlways" />
+            app:layout_scrollFlags="enterAlways" />-->
 
-        <View style="@style/Aw.Component.Separator" />
+        <!--<View style="@style/Aw.Component.Separator" />-->
 
     </com.google.android.material.appbar.AppBarLayout>
 

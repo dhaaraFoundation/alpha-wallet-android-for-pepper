@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public abstract class EthereumNetworkBase { // implements EthereumNetworkRepositoryType
-    public static final long MAINNET_ID = 1;
+    public static final long MAINNET_ID = 1807;
     public static final long CLASSIC_ID = 61;
     public static final long POA_ID = 99;
     public static final long KOVAN_ID = 42;
@@ -49,7 +49,7 @@ public abstract class EthereumNetworkBase { // implements EthereumNetworkReposit
     public static final long PHI_MAIN_ID = 4181;
 
 
-    public static final String MAINNET_RPC_URL = "https://mainnet.infura.io/v3/da3717f25f824cc1baa32d812386d93f";
+    public static final String MAINNET_RPC_URL = "https://rabbit.analog-rpc.com";//"https://mainnet.infura.io/v3/da3717f25f824cc1baa32d812386d93f";
     public static final String CLASSIC_RPC_URL = "https://www.ethercluster.com/etc";
     public static final String XDAI_RPC_URL = "https://rpc.ankr.com/gnosis";
     public static final String POA_RPC_URL = "https://core.poa.network/";
@@ -88,8 +88,8 @@ public abstract class EthereumNetworkBase { // implements EthereumNetworkReposit
 
     static Map<Long, NetworkInfo> networkMap = new LinkedHashMap<Long, NetworkInfo>() {
         {
-            put(MAINNET_ID, new NetworkInfo("Ethereum", "ETH", MAINNET_RPC_URL, "https://etherscan.io/tx/",
-                    MAINNET_ID, false));
+            //put(MAINNET_ID, new NetworkInfo("Ethereum", "ETH", MAINNET_RPC_URL, "https://etherscan.io/tx/",MAINNET_ID, false));
+            put(MAINNET_ID, new NetworkInfo("Rabbit Network", "ANA", MAINNET_RPC_URL, "https://rabbit.analogscan.com/",MAINNET_ID, false));
             put(CLASSIC_ID, new NetworkInfo("Ethereum Classic", "ETC", CLASSIC_RPC_URL, "https://blockscout.com/etc/mainnet/tx/",
                     CLASSIC_ID, false));
             put(XDAI_ID, new NetworkInfo("Gnosis", "xDAi", XDAI_RPC_URL, "https://blockscout.com/xdai/mainnet/tx/",

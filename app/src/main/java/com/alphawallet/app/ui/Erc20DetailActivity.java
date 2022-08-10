@@ -104,8 +104,8 @@ public class Erc20DetailActivity extends BaseActivity implements StandardFunctio
 
     private final DetailPage[] detailPages = new DetailPage[] {
             new DetailPage(R.string.tab_info, new TokenInfoFragment()),
-            new DetailPage(R.string.tab_activity, new TokenActivityFragment()),
-            new DetailPage(R.string.tab_alert, new TokenAlertsFragment())
+            //new DetailPage(R.string.tab_activity, new TokenActivityFragment()),
+            //new DetailPage(R.string.tab_alert, new TokenAlertsFragment())
     };
 
     @Override
@@ -168,15 +168,15 @@ public class Erc20DetailActivity extends BaseActivity implements StandardFunctio
             }
         });
 
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        //TabLayout tabLayout = findViewById(R.id.tab_layout);
         // connect viewPager and TabLayout
-        new TabLayoutMediator(tabLayout, viewPager,
-                (tab, position) -> tab.setText(pages.get(position).first)
-        ).attach();
+        // new TabLayoutMediator(tabLayout, viewPager,
+        //         (tab, position) -> tab.setText(pages.get(position).first)
+        // ).attach();
 
         // TODO: addOnTabSelectedListener if you need to refresh values when switching tabs
 
-        TabUtils.decorateTabLayout(this, tabLayout);
+        //TabUtils.decorateTabLayout(this, tabLayout);
     }
 
     private List<Pair<String, Fragment>> getPages(Bundle bundle)

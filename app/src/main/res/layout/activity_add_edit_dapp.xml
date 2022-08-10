@@ -36,7 +36,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/standard_16"
                 android:layout_marginBottom="@dimen/standard_16"
-                android:src="@drawable/ic_launcher_foreground" />
+                android:src="@drawable/ic_logo" />
 
             <com.alphawallet.app.widget.InputView
                 android:id="@+id/dapp_title"

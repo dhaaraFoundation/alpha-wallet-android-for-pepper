@@ -19,12 +19,16 @@ import androidx.lifecycle.ViewModelProvider;
 import com.alphawallet.app.BuildConfig;
 import com.alphawallet.app.C;
 import com.alphawallet.app.R;
+import com.alphawallet.app.entity.Wallet;
 import com.alphawallet.app.entity.tokens.Token;
 import com.alphawallet.app.entity.tokens.TokenPortfolio;
 import com.alphawallet.app.service.TickerService;
+import com.alphawallet.app.ui.widget.adapter.ActivityAdapter;
 import com.alphawallet.app.ui.widget.entity.HistoryChart;
 import com.alphawallet.app.util.TabUtils;
+import com.alphawallet.app.viewmodel.TokenActivityViewModel;
 import com.alphawallet.app.viewmodel.TokenInfoViewModel;
+import com.alphawallet.app.widget.ActivityHistoryList;
 import com.alphawallet.app.widget.TokenInfoCategoryView;
 import com.alphawallet.app.widget.TokenInfoHeaderView;
 import com.alphawallet.app.widget.TokenInfoView;
@@ -68,6 +72,10 @@ public class TokenInfoFragment extends BaseFragment {
     private LinearLayout tokenInfoLayout;
     private HistoryChart historyChart;
 
+    private TokenActivityViewModel viewModelTokenActivity;
+    private ActivityHistoryList history;
+    private Wallet wallet;
+
     private TokenInfoHeaderView tokenInfoHeaderView;
     private TokenInfoView portfolioBalance;
     private TokenInfoView portfolioProfit24Hr;
@@ -101,13 +109,23 @@ public class TokenInfoFragment extends BaseFragment {
             viewModel = new ViewModelProvider(this)
                     .get(TokenInfoViewModel.class);
 
+            viewModelTokenActivity = new ViewModelProvider(this)
+                    .get(TokenActivityViewModel.class);
+
             long chainId = getArguments().getLong(C.EXTRA_CHAIN_ID, EthereumNetworkBase.MAINNET_ID);
             token = viewModel.getTokensService().getToken(chainId, getArguments().getString(C.EXTRA_ADDRESS));
 
             initTabLayout(view);
-            historyChart = view.findViewById(R.id.history_chart);
+            //historyChart = view.findViewById(R.id.history_chart);
             tokenInfoHeaderLayout = view.findViewById(R.id.layout_token_header);
             tokenInfoLayout = view.findViewById(R.id.layout_token_info);
+
+
+            wallet = getArguments().getParcelable(C.Key.WALLET);
+
+            history = view.findViewById(R.id.history_list);
+
+            setUpRecentTransactionsView();
 
             //TODO: Work out how to source these
             //portfolioBalance = new TokenInfoView(getContext(), "Balance");
@@ -141,25 +159,25 @@ public class TokenInfoFragment extends BaseFragment {
             tokenInfoLayout.addView(portfolioAverageCost);
             tokenInfoLayout.addView(portfolioPaidFees);*/
 
-            tokenInfoLayout.addView(new TokenInfoCategoryView(getContext(), getString(R.string.performance)));
-            tokenInfoLayout.addView(performance1D);
-            tokenInfoLayout.addView(performance1W);
-            tokenInfoLayout.addView(performance1M);
-            tokenInfoLayout.addView(performance1Y);
+//            tokenInfoLayout.addView(new TokenInfoCategoryView(getContext(), getString(R.string.performance)));
+//            tokenInfoLayout.addView(performance1D);
+//            tokenInfoLayout.addView(performance1W);
+//            tokenInfoLayout.addView(performance1M);
+//            tokenInfoLayout.addView(performance1Y);
+//
+//            tokenInfoLayout.addView(new TokenInfoCategoryView(getContext(), "Stats"));
+//            tokenInfoLayout.addView(statsMarketCap);
+//            tokenInfoLayout.addView(statsTradingVolume);
+//            tokenInfoLayout.addView(statsMaxVolume);
+//            tokenInfoLayout.addView(stats1YearLow);
+//            tokenInfoLayout.addView(stats1YearHigh);
 
-            tokenInfoLayout.addView(new TokenInfoCategoryView(getContext(), "Stats"));
-            tokenInfoLayout.addView(statsMarketCap);
-            tokenInfoLayout.addView(statsTradingVolume);
-            tokenInfoLayout.addView(statsMaxVolume);
-            tokenInfoLayout.addView(stats1YearLow);
-            tokenInfoLayout.addView(stats1YearHigh);
-
-            historyChart.fetchHistory(token, HistoryChart.Range.Day);
-            populateStats(token)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::handleValues, e -> { /*TODO: Hide stats*/ })
-                    .isDisposed();
+           // historyChart.fetchHistory(token, HistoryChart.Range.Day);
+//            populateStats(token)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(this::handleValues, e -> { /*TODO: Hide stats*/ })
+//                    .isDisposed();
         }
     }
 
@@ -193,19 +211,19 @@ public class TokenInfoFragment extends BaseFragment {
 
     private void initTabLayout(View view)
     {
-        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+        //TabLayout tabLayout = view.findViewById(R.id.tab_layout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("1D"));
-        tabLayout.addTab(tabLayout.newTab().setText("1W"));
-        tabLayout.addTab(tabLayout.newTab().setText("1M"));
-        tabLayout.addTab(tabLayout.newTab().setText("3M"));
-        tabLayout.addTab(tabLayout.newTab().setText("1Y"));
+//        tabLayout.addTab(tabLayout.newTab().setText("1D"));
+//        tabLayout.addTab(tabLayout.newTab().setText("1W"));
+//        tabLayout.addTab(tabLayout.newTab().setText("1M"));
+//        tabLayout.addTab(tabLayout.newTab().setText("3M"));
+//        tabLayout.addTab(tabLayout.newTab().setText("1Y"));
         
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        /*tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab)
             {
-                historyChart.fetchHistory(token, HistoryChart.Range.values()[tab.getPosition()]);
+                //historyChart.fetchHistory(token, HistoryChart.Range.values()[tab.getPosition()]);
             }
 
             @Override
@@ -219,7 +237,7 @@ public class TokenInfoFragment extends BaseFragment {
             }
         });
 
-        TabUtils.setHighlightedTabColor(getContext(), tabLayout);
+        TabUtils.setHighlightedTabColor(getContext(), tabLayout);*/
     }
 
     private void onPortfolioUpdated(TokenPortfolio tokenPortfolio)
@@ -379,5 +397,15 @@ public class TokenInfoFragment extends BaseFragment {
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         return calendar.getTime();
+    }
+
+    private void setUpRecentTransactionsView()
+    {
+        ActivityAdapter adapter = new ActivityAdapter(viewModel.getTokensService(), viewModelTokenActivity.getTransactionsInteract(),
+                viewModel.getAssetDefinitionService());
+        adapter.setDefaultWallet(wallet);
+        history.setupAdapter(adapter);
+        history.startActivityListeners(viewModelTokenActivity.getRealmInstance(wallet), wallet,
+                token, viewModel.getTokensService(),15);
     }
 }

@@ -88,7 +88,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <!--<RelativeLayout
                 android:id="@+id/layout_tokenscript_compatibility"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -124,7 +124,7 @@
 
                 </LinearLayout>
 
-            </RelativeLayout>
+            </RelativeLayout>-->
 
         </LinearLayout>
 

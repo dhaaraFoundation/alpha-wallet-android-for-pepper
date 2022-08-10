@@ -23,13 +23,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class TokenActivityFragment extends BaseFragment {
-
     private TokenActivityViewModel viewModel;
-
     private ActivityHistoryList history;
-
     private Wallet wallet;
-
     private Token token;
 
     @Nullable

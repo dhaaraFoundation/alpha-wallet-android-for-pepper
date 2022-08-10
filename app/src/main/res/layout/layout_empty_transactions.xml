@@ -11,7 +11,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="@dimen/double_huge_72"
         android:layout_marginEnd="@dimen/double_huge_72"
-        android:src="@drawable/ic_icons_no_transactions"
+        android:src="@drawable/ic_logo"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

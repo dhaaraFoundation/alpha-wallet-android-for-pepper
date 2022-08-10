@@ -16,16 +16,20 @@ import static com.alphawallet.app.ui.HomeActivity.RESET_TOKEN_SERVICE;
 import static com.alphawallet.token.tools.TokenDefinition.TOKENSCRIPT_CURRENT_SCHEMA;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -38,22 +42,27 @@ import com.alphawallet.app.C;
 import com.alphawallet.app.R;
 import com.alphawallet.app.entity.BackupOperationType;
 import com.alphawallet.app.entity.CustomViewSettings;
+import com.alphawallet.app.entity.MediaLinks;
 import com.alphawallet.app.entity.Wallet;
 import com.alphawallet.app.entity.WalletPage;
 import com.alphawallet.app.entity.WalletType;
 import com.alphawallet.app.interact.GenericWalletInteract;
 import com.alphawallet.app.util.LocaleUtils;
 import com.alphawallet.app.util.UpdateUtils;
+import com.alphawallet.app.viewmodel.AdvancedSettingsViewModel;
 import com.alphawallet.app.viewmodel.NewSettingsViewModel;
 import com.alphawallet.app.widget.NotificationView;
 import com.alphawallet.app.widget.SettingsItemView;
+import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Locale;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 @AndroidEntryPoint
 public class NewSettingsFragment extends BaseFragment
@@ -113,6 +122,7 @@ public class NewSettingsFragment extends BaseFragment
             });
 
     private NewSettingsViewModel viewModel;
+    private AdvancedSettingsViewModel viewModelAdS;
     private LinearLayout walletSettingsLayout;
     private LinearLayout systemSettingsLayout;
     private LinearLayout supportSettingsLayout;
@@ -130,6 +140,16 @@ public class NewSettingsFragment extends BaseFragment
     private SettingsItemView walletConnectSetting;
     private SettingsItemView showSeedPhrase;
     private SettingsItemView nameThisWallet;
+    private SettingsItemView telegram;
+    private SettingsItemView discord;
+    private SettingsItemView email;
+    private SettingsItemView twitter;
+    private SettingsItemView reddit;
+    private SettingsItemView facebook;
+    private SettingsItemView blog;
+    private SettingsItemView faq;
+    private SettingsItemView github;
+    private SettingsItemView clearBrowserCache;
     private LinearLayout layoutBackup;
     private Button backupButton;
     private TextView backupTitle;
@@ -146,6 +166,8 @@ public class NewSettingsFragment extends BaseFragment
     {
         viewModel = new ViewModelProvider(this)
                 .get(NewSettingsViewModel.class);
+        viewModelAdS =  new ViewModelProvider(this)
+                .get(AdvancedSettingsViewModel.class);
         viewModel.defaultWallet().observe(getViewLifecycleOwner(), this::onDefaultWallet);
         viewModel.backUpMessage().observe(getViewLifecycleOwner(), this::backupWarning);
         LocaleUtils.setActiveLocale(getContext());
@@ -298,6 +320,11 @@ public class NewSettingsFragment extends BaseFragment
                         .withTitle(R.string.title_advanced)
                         .withListener(this::onAdvancedSettingClicked)
                         .build();
+        clearBrowserCache = new SettingsItemView.Builder(getContext())
+                .withIcon(R.drawable.ic_settings_cache)
+                .withTitle(R.string.title_clear_browser_cache)
+                .withListener(this::onClearBrowserCacheClicked)
+                .build();
 
         darkModeSetting =
                 new SettingsItemView.Builder(getContext())
@@ -312,6 +339,40 @@ public class NewSettingsFragment extends BaseFragment
                         .withTitle(R.string.title_support)
                         .withListener(this::onSupportSettingClicked)
                         .build();
+        telegram = new SettingsItemView.Builder(getContext())
+                .withIcon(R.drawable.ic_logo_telegram)
+                .withTitle(R.string.telegram)
+                .withListener(this::onTelegramClicked)
+                .build();
+
+        discord = new SettingsItemView.Builder(getContext())
+                .withIcon(R.drawable.ic_logo_discord)
+                .withTitle(R.string.discord)
+                .withListener(this::onDiscordClicked)
+                .build();
+
+        email = new SettingsItemView.Builder(getContext())
+                .withIcon(R.drawable.ic_email)
+                .withTitle(R.string.email)
+                .withListener(this::onEmailClicked)
+                .build();
+
+        twitter = new SettingsItemView.Builder(getContext())
+                .withIcon(R.drawable.ic_logo_twitter)
+                .withTitle(R.string.twitter)
+                .withListener(this::onTwitterClicked)
+                .build();
+        github = new SettingsItemView.Builder(getContext())
+                .withIcon(R.drawable.ic_logo_github)
+                .withTitle(R.string.github)
+                .withListener(this::onGitHubClicked)
+                .build();
+
+        faq = new SettingsItemView.Builder(getContext())
+                .withIcon(R.drawable.ic_settings_faq)
+                .withTitle(R.string.title_faq)
+                .withListener(this::onFaqClicked)
+                .build();
     }
 
     private void addSettingsToLayout()
@@ -348,17 +409,26 @@ public class NewSettingsFragment extends BaseFragment
 
         systemSettingsLayout.addView(darkModeSetting, systemIndex++);
 
-        systemSettingsLayout.addView(advancedSetting, systemIndex++);
+        //systemSettingsLayout.addView(advancedSetting, systemIndex++);
+        systemSettingsLayout.addView(clearBrowserCache, systemIndex++);
 
-        supportSettingsLayout.addView(supportSetting, supportIndex++);
+        //supportSettingsLayout.addView(supportSetting, supportIndex++);
+        supportSettingsLayout.addView(telegram, supportIndex++);
+//        supportSettingsLayout.addView(discord, supportIndex++);
+//        supportSettingsLayout.addView(email, supportIndex++);
+//        supportSettingsLayout.addView(twitter, supportIndex++);
+//        supportSettingsLayout.addView(github, supportIndex++);
+//        supportSettingsLayout.addView(faq, supportIndex++);
+
+
     }
 
     private void setInitialSettingsData(View view)
     {
         TextView appVersionText = view.findViewById(R.id.text_version);
         appVersionText.setText(String.format(Locale.getDefault(), "%s (%d)", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE));
-        TextView tokenScriptVersionText = view.findViewById(R.id.text_tokenscript_compatibility);
-        tokenScriptVersionText.setText(TOKENSCRIPT_CURRENT_SCHEMA);
+        //TextView tokenScriptVersionText = view.findViewById(R.id.text_tokenscript_compatibility);
+        //tokenScriptVersionText.setText(TOKENSCRIPT_CURRENT_SCHEMA);
 
         notificationsSetting.setToggleState(viewModel.getNotificationState());
     }
@@ -696,5 +766,165 @@ public class NewSettingsFragment extends BaseFragment
                         .isDisposed();
             }
         }
+    }
+
+    private void onTelegramClicked() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(MediaLinks.AWALLET_TELEGRAM_URL));
+        if (isAppAvailable(C.TELEGRAM_PACKAGE_NAME)) {
+            intent.setPackage(C.TELEGRAM_PACKAGE_NAME);
+        }
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void onGitHubClicked() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+
+        intent.setData(Uri.parse(MediaLinks.AWALLET_GITHUB));
+
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void onDiscordClicked(){
+        Intent intent;
+        try {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MediaLinks.AWALLET_DISCORD_URL));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        } catch (Exception e) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MediaLinks.AWALLET_DISCORD_URL));
+        }
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void onEmailClicked() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        final String at = "@";
+        String email =
+                "mailto:" + MediaLinks.AWALLET_EMAIL1 + at + MediaLinks.AWALLET_EMAIL2 +
+                        "?subject=" + Uri.encode(MediaLinks.AWALLET_SUBJECT) +
+                        "&body=" + Uri.encode("");
+        intent.setData(Uri.parse(email));
+
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void onLinkedInClicked() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(MediaLinks.AWALLET_LINKEDIN_URL));
+        if (isAppAvailable(C.LINKEDIN_PACKAGE_NAME)) {
+            intent.setPackage(C.LINKEDIN_PACKAGE_NAME);
+        }
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void onTwitterClicked() {
+        Intent intent;
+        try {
+            getActivity().getPackageManager().getPackageInfo(C.TWITTER_PACKAGE_NAME, 0);
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MediaLinks.AWALLET_TWITTER_URL));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        } catch (Exception e) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MediaLinks.AWALLET_TWITTER_URL));
+        }
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void onRedditClicked() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        if (isAppAvailable(C.REDDIT_PACKAGE_NAME)) {
+            intent.setPackage(C.REDDIT_PACKAGE_NAME);
+        }
+
+        intent.setData(Uri.parse(MediaLinks.AWALLET_REDDIT_URL));
+
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void onFacebookClicked() {
+        Intent intent;
+        try {
+            getActivity().getPackageManager().getPackageInfo(C.FACEBOOK_PACKAGE_NAME, 0);
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MediaLinks.AWALLET_FACEBOOK_URL));
+            //intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MediaLinks.AWALLET_FACEBOOK_ID));
+        } catch (Exception e) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MediaLinks.AWALLET_FACEBOOK_URL));
+        }
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void onBlogClicked() {
+
+    }
+
+    private void onFaqClicked() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(MediaLinks.AWALLET_FAQ_URL));
+
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private boolean isAppAvailable(String packageName) {
+        PackageManager pm = getActivity().getPackageManager();
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private void onClearBrowserCacheClicked()
+    {
+        WebView webView = new WebView(getContext());
+        webView.clearCache(true);
+        viewModelAdS.blankFilterSettings();
+
+        Single.fromCallable(() ->
+                {
+                    Glide.get(getContext()).clearDiskCache();
+                    return 1;
+                }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(v ->
+                {
+                    Toast.makeText(getContext(), getString(R.string.toast_browser_cache_cleared), Toast.LENGTH_SHORT).show();
+                    getActivity().finish();
+                }).isDisposed();
     }
 }

@@ -396,7 +396,7 @@ public class WalletFragment extends BaseFragment implements
             tabLayout.setVisibility(View.GONE);
             return;
         }
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.all));
+        //tabLayout.addTab(tabLayout.newTab().setText(R.string.all));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.assets));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.collectibles));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.defi_header));
@@ -412,7 +412,7 @@ public class WalletFragment extends BaseFragment implements
                 adapter.setFilterType(newFilter);
                 switch (newFilter)
                 {
-                    case ALL:
+                    //case ALL:
                     case ASSETS:
                     case DEFI:
                     case GOVERNANCE:

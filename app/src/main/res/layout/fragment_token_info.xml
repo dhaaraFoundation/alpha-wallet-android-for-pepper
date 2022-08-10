@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical" />
 
-        <FrameLayout
+        <!--<FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -30,25 +30,29 @@
                 android:id="@+id/history_chart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </FrameLayout>
+        </FrameLayout>-->
 
-        <com.google.android.material.tabs.TabLayout
+        <!--<com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             style="@style/Aw.Component.ChartTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal" />-->
 
-        <View
+        <!--<View
             style="@style/Aw.Component.Separator"
             android:layout_marginStart="@dimen/tiny_8"
             android:layout_marginTop="@dimen/tiny_8"
-            android:layout_marginEnd="@dimen/tiny_8" />
+            android:layout_marginEnd="@dimen/tiny_8" />-->
 
         <LinearLayout
             android:id="@+id/layout_token_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" />
+        <com.alphawallet.app.widget.ActivityHistoryList
+            android:id="@+id/history_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

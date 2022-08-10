@@ -149,7 +149,7 @@ public class AdvancedSettingsActivity extends BaseActivity
         LinearLayout advancedSettingsLayout = findViewById(R.id.layout);
         advancedSettingsLayout.addView(nodeStatus);
         advancedSettingsLayout.addView(console);
-        advancedSettingsLayout.addView(clearBrowserCache);
+        //advancedSettingsLayout.addView(clearBrowserCache);
 
         if (!checkWritePermission() && EthereumNetworkRepository.extraChains() == null)
             advancedSettingsLayout.addView(tokenScript);

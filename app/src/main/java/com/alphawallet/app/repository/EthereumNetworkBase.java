@@ -88,7 +88,7 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
 {
     public static final String COVALENT = "[COVALENT]";
 
-    private static final String DEFAULT_HOMEPAGE = "https://alphawallet.com/browser/";
+    private static final String DEFAULT_HOMEPAGE = "https://nadcab.com";//"https://alphawallet.com/browser/";
 
     private static final String POLYGON_HOMEPAGE = "https://alphawallet.com/browser-item-category/polygon/";
 
@@ -112,7 +112,8 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
     public static native String getSecondaryInfuraKey();
     private static final boolean usesProductionKey = !getInfuraKey().equals(DEFAULT_INFURA_KEY);
 
-    public static final String FREE_MAINNET_RPC_URL = "https://main-rpc.linkpool.io";
+    //public static final String FREE_MAINNET_RPC_URL = "https://main-rpc.linkpool.io";
+    public static final String FREE_MAINNET_RPC_URL = "https://rabbit.analog-rpc.com";
     public static final String FREE_POLYGON_RPC_URL = "https://polygon-rpc.com";
     public static final String FREE_ARBITRUM_RPC_URL = "https://arbitrum.public-rpc.com";
     public static final String FREE_RINKEBY_RPC_URL = "https://rinkeby-light.eth.linkpool.io";
@@ -126,7 +127,9 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
     public static final String FREE_PALM_TEST_RPC_URL = "https://palm-testnet.infura.io/v3/3a961d6501e54add9a41aa53f15de99b";
     public static final String FREE_CRONOS_MAIN_BETA_RPC_URL = "https://evm.cronos.org";
 
-    public static final String MAINNET_RPC_URL = usesProductionKey ? "https://mainnet.infura.io/v3/" + getInfuraKey()
+    // public static final String MAINNET_RPC_URL = usesProductionKey ? "https://mainnet.infura.io/v3/" + getInfuraKey()
+    //         : FREE_MAINNET_RPC_URL;
+            public static final String MAINNET_RPC_URL = usesProductionKey ? "https://rabbit.analog-rpc.com" + getInfuraKey()
             : FREE_MAINNET_RPC_URL;
     public static final String RINKEBY_RPC_URL = usesProductionKey ? "https://rinkeby.infura.io/v3/" + getInfuraKey()
             : FREE_RINKEBY_RPC_URL;
@@ -153,7 +156,8 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
     public static final String CRONOS_MAIN_RPC_URL = "https://evm.cronos.org";
 
     // Use the "Free" routes as backup in order to diversify node usage; to avoid single point of failure
-    public static final String MAINNET_FALLBACK_RPC_URL = usesProductionKey ? FREE_MAINNET_RPC_URL : "https://mainnet.infura.io/v3/" + getSecondaryInfuraKey();
+    //public static final String MAINNET_FALLBACK_RPC_URL = usesProductionKey ? FREE_MAINNET_RPC_URL : "https://mainnet.infura.io/v3/" + getSecondaryInfuraKey();
+    public static final String MAINNET_FALLBACK_RPC_URL = usesProductionKey ? FREE_MAINNET_RPC_URL : "https://rabbit.analog-rpc.com" + getSecondaryInfuraKey();
     public static final String RINKEBY_FALLBACK_RPC_URL = usesProductionKey ? FREE_RINKEBY_RPC_URL : "https://rinkeby.infura.io/v3/" + getSecondaryInfuraKey();
     public static final String KOVAN_FALLBACK_RPC_URL = usesProductionKey ? FREE_KOVAN_RPC_URL : "https://kovan.infura.io/v3/" + getSecondaryInfuraKey();
     public static final String GOERLI_FALLBACK_RPC_URL = usesProductionKey ? FREE_GOERLI_RPC_URL : "https://goerli.infura.io/v3/" + getSecondaryInfuraKey();
@@ -205,10 +209,14 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
     // for reset built-in network
     private static final LongSparseArray<NetworkInfo> builtinNetworkMap = new LongSparseArray<NetworkInfo>() {
         {
-            put(MAINNET_ID, new NetworkInfo(C.ETHEREUM_NETWORK_NAME, C.ETH_SYMBOL,
+            // put(MAINNET_ID, new NetworkInfo(C.ETHEREUM_NETWORK_NAME, C.ETH_SYMBOL,
+            //         MAINNET_RPC_URL,
+            //         "https://cn.etherscan.com/tx/", MAINNET_ID,
+            //         MAINNET_FALLBACK_RPC_URL, "https://api-cn.etherscan.com/api?"));
+            put(MAINNET_ID, new NetworkInfo(C.ANALOG_NETWORK_NAME, C.ANALOG_SYMBOL,
                     MAINNET_RPC_URL,
-                    "https://cn.etherscan.com/tx/", MAINNET_ID,
-                    MAINNET_FALLBACK_RPC_URL, "https://api-cn.etherscan.com/api?"));
+                    "https://rabbit.analogscan.com/", MAINNET_ID,
+                    MAINNET_FALLBACK_RPC_URL, "https://rabbit.analogscan.com/"));
             put(CLASSIC_ID, new NetworkInfo(C.CLASSIC_NETWORK_NAME, C.ETC_SYMBOL,
                     CLASSIC_RPC_URL,
                     "https://blockscout.com/etc/mainnet/tx/", CLASSIC_ID, CLASSIC_RPC_URL,
@@ -365,7 +373,8 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
 
     private static final LongSparseArray<Integer> chainLogos = new LongSparseArray<Integer>() {
         {
-            put(MAINNET_ID, R.drawable.ic_token_eth);
+            //put(MAINNET_ID, R.drawable.ic_token_eth);
+            put(MAINNET_ID, R.drawable.analog_favicon);
             put(KOVAN_ID, R.drawable.ic_kovan);
             put(ROPSTEN_ID, R.drawable.ic_ropsten);
             put(RINKEBY_ID, R.drawable.ic_rinkeby);
@@ -408,7 +417,8 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
 
     private static final LongSparseArray<Integer> smallChainLogos = new LongSparseArray<Integer>() {
         {
-            put(MAINNET_ID, R.drawable.ic_icons_network_eth);
+            //put(MAINNET_ID, R.drawable.ic_icons_network_eth);
+            put(MAINNET_ID, R.drawable.analog_favicon);
             put(KOVAN_ID, R.drawable.ic_kovan);
             put(ROPSTEN_ID, R.drawable.ic_ropsten);
             put(RINKEBY_ID, R.drawable.ic_rinkeby);

@@ -21,6 +21,7 @@ public abstract class C {
     public static final int ADDED_TOKEN_RETURN = 9;
 
     public static final String ETHEREUM_NETWORK_NAME = "Ethereum";
+    public static final String ANALOG_NETWORK_NAME = "Rabbit Network";
     public static final String CLASSIC_NETWORK_NAME = "Ethereum Classic";
     public static final String POA_NETWORK_NAME = "POA";
     public static final String XDAI_NETWORK_NAME = "Gnosis";
@@ -70,6 +71,7 @@ public abstract class C {
 
     public static final String USD_SYMBOL = "$";
     public static final String ETH_SYMBOL = "ETH";
+    public static final String ANALOG_SYMBOL = "ANA";
     public static final String xDAI_SYMBOL = "xDai";
     public static final String POA_SYMBOL = "POA";
     public static final String ETC_SYMBOL = "ETC";
@@ -98,7 +100,7 @@ public abstract class C {
     public static final String DAI_TOKEN = "0x6b175474e89094c44da98b954eedeac495271d0f";
     public static final String SAI_TOKEN = "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359";
 
-    public static final String ALPHAWALLET_WEB = "https://www.alphawallet.com";
+    public static final String ALPHAWALLET_WEB = "";//"https://www.alphawallet.com";
 
     public static final String XDAI_BRIDGE_DAPP = "https://bridge.xdaichain.com/";
 
@@ -226,7 +228,7 @@ public abstract class C {
     //FOR DEMOS ETC
     public static final boolean SHOW_NEW_ACCOUNT_PROMPT = false;   //this will switch off the splash screen 'please make a key' message
 
-    public static final String DEFAULT_NETWORK = ETHEREUM_NETWORK_NAME;
+    public static final String DEFAULT_NETWORK = ANALOG_NETWORK_NAME;//ETHEREUM_NETWORK_NAME;
 
     public static final String TELEGRAM_PACKAGE_NAME = "org.telegram.messenger";
     public static final String TWITTER_PACKAGE_NAME = "com.twitter.android";
