@@ -1,12 +1,12 @@
 package com.alphawallet.app.ui.widget.entity;
 
-import com.alphawallet.app.ui.widget.holder.ManageTokensHolder;
+import com.alphawallet.app.ui.widget.holder.ManageTokensHolderOld;
 
 
 public class ManageTokensSortedItem extends SortedItem<ManageTokensData> {
 
     public ManageTokensSortedItem(ManageTokensData data) {
-        super(ManageTokensHolder.VIEW_TYPE, data, new TokenPosition(Long.MAX_VALUE));
+        super(ManageTokensHolderOld.VIEW_TYPE, data, new TokenPosition(Long.MAX_VALUE));
     }
 
     @Override

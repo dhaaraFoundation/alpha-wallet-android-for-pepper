@@ -5,7 +5,7 @@ package com.alphawallet.app.entity;
  */
 public enum TokenFilter
 {
-    ALL,
+    //ALL,
     ASSETS,
     COLLECTIBLES,
     DEFI,

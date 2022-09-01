@@ -111,7 +111,7 @@ public class WalletFragment extends BaseFragment implements
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
     private boolean isVisible;
-    private TokenFilter currentTabPos = TokenFilter.ALL;
+    private TokenFilter currentTabPos = TokenFilter.ASSETS;//TokenFilter.ALL;
     private Realm realm = null;
     private RealmResults<RealmToken> realmUpdates;
     private LargeTitleView largeTitleView;
@@ -178,7 +178,8 @@ public class WalletFragment extends BaseFragment implements
         adapter = new TokensAdapter(this, viewModel.getAssetDefinitionService(), viewModel.getTokensService(),
                 tokenManagementLauncher);
         adapter.setHasStableIds(true);
-        setLinearLayoutManager(TokenFilter.ALL.ordinal());
+        //setLinearLayoutManager(TokenFilter.ALL.ordinal());
+        setLinearLayoutManager(TokenFilter.ASSETS.ordinal());
         recyclerView.setAdapter(adapter);
         if (recyclerView.getItemAnimator() != null)
             ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
@@ -295,6 +296,7 @@ public class WalletFragment extends BaseFragment implements
         {
             if (metas.size() > 0)
             {
+                adapter.clear();
                 adapter.setTokens(metas.toArray(new TokenCardMeta[0]));
                 systemView.hide();
             }
@@ -502,7 +504,7 @@ public class WalletFragment extends BaseFragment implements
     public void onResume()
     {
         super.onResume();
-        currentTabPos = TokenFilter.ALL;
+        currentTabPos = TokenFilter.ASSETS;//TokenFilter.ALL;
         selectedToken = null;
         if (viewModel == null)
         {

@@ -86,6 +86,7 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
     private List<ItemClick> moreActionsList;
     private FunctionItemAdapter moreActionsAdapter;
     private boolean hasBuyFunction;
+    private boolean hideMoreAction = false;
     private OnRampRepositoryType onRampRepository;
 
     public FunctionButtonBar(Context ctx, @Nullable AttributeSet attrs)
@@ -523,7 +524,7 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
             {
                 moreActionsList.add(function);
                 moreActionsAdapter.notifyDataSetChanged();
-                moreButton.setVisibility(View.VISIBLE);
+                moreButton.setVisibility(hideMoreAction ? View.GONE: View.VISIBLE );
                 moreButton.setOnClickListener(v -> onMoreButtonClick());
             }
         }
@@ -543,6 +544,10 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
     public void setWalletType(WalletType type)
     {
         walletType = type;
+    }
+
+    public void setHideMoreAction(boolean isHide) {
+        hideMoreAction = isHide;
     }
 
     private void populateButtons(Token token, BigInteger tokenId)

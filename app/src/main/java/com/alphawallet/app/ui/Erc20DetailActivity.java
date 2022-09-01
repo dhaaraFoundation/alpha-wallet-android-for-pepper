@@ -197,6 +197,7 @@ public class Erc20DetailActivity extends BaseActivity implements StandardFunctio
             functionBar.setupFunctions(this, viewModel.getAssetDefinitionService(), token, null, null);
             functionBar.revealButtons();
             functionBar.setWalletType(wallet.type);
+            functionBar.setHideMoreAction(true);
         }
     }
 

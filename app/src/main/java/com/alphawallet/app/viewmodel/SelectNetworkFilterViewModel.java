@@ -86,18 +86,34 @@ public class SelectNetworkFilterViewModel extends BaseViewModel {
 
     public List<NetworkItem> getNetworkList(boolean isMainNet)
     {
-        List<NetworkItem> networkList = new ArrayList<>();
-        List<Long> filterIds = networkRepository.getSelectedFilters(isMainNet);
+        if(isMainNet) {
+            List<NetworkItem> networkList = new ArrayList<>();
+            List<Long> filterIds = networkRepository.getSelectedFilters(isMainNet);
 
-        for (NetworkInfo info : getNetworkList())
-        {
-            if (EthereumNetworkRepository.hasRealValue(info.chainId) == isMainNet)
+            for (NetworkInfo info : getNetworkList())
             {
-                networkList.add(new NetworkItem(info.name, info.chainId, filterIds.contains(info.chainId)));
+                if (EthereumNetworkRepository.hasRealValue(info.chainId) == isMainNet)
+                {
+                    networkList.add(new NetworkItem(info.name, info.chainId, filterIds.contains(info.chainId)));
+                }
             }
+
+            return networkList;
+        } else {
+            List<NetworkItem> networkList = new ArrayList<>();
+            List<Long> filterIds = networkRepository.getSelectedFilters(isMainNet);
+
+            for (NetworkInfo info : getNetworkList())
+            {
+                if (EthereumNetworkRepository.isTestNet(info.chainId))
+                {
+                    networkList.add(new NetworkItem(info.name, info.chainId, filterIds.contains(info.chainId)));
+                }
+            }
+
+            return networkList;
         }
 
-        return networkList;
     }
 
     public void removeCustomNetwork(long chainId) {

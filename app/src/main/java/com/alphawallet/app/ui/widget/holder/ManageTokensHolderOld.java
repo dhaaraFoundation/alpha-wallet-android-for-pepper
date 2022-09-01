@@ -11,7 +11,7 @@ import com.alphawallet.app.R;
 import com.alphawallet.app.ui.widget.TokensAdapterCallback;
 import com.alphawallet.app.ui.widget.entity.ManageTokensData;
 
-public class ManageTokensHolder extends BinderViewHolder<ManageTokensData> {
+public class ManageTokensHolderOld extends BinderViewHolder<ManageTokensData> {
     public static final int VIEW_TYPE = 2015;
 
     Button button;
@@ -21,7 +21,7 @@ public class ManageTokensHolder extends BinderViewHolder<ManageTokensData> {
 
     }
 
-    public ManageTokensHolder(int res_id, ViewGroup parent) {
+    public ManageTokensHolderOld(int res_id, ViewGroup parent) {
         super(res_id, parent);
         button = findViewById(R.id.primary_button);
     }

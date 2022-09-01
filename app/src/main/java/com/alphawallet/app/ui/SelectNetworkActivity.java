@@ -143,7 +143,7 @@ public class SelectNetworkActivity extends SelectNetworkBaseActivity implements 
             {
                 mainNetList.add(new NetworkItem(info.name, info.chainId, selectedNetwork.equals(info.chainId)));
             }
-            else
+            else if(EthereumNetworkRepository.isTestNet(info.chainId))
             {
                 testNetList.add(new NetworkItem(info.name, info.chainId, selectedNetwork.equals(info.chainId)));
             }

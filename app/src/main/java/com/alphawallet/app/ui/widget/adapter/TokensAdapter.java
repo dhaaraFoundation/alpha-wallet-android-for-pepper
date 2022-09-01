@@ -49,7 +49,7 @@ import java.util.List;
 public class TokensAdapter extends RecyclerView.Adapter<BinderViewHolder> {
     private static final String TAG = "TKNADAPTER";
 
-    private TokenFilter filterType = TokenFilter.ALL;
+    private TokenFilter filterType = TokenFilter.ASSETS;//TokenFilter.ALL;
     protected final AssetDefinitionService assetService;
     protected final TokensService tokensService;
     private final ActivityResultLauncher<Intent> managementLauncher;
@@ -156,13 +156,15 @@ public class TokensAdapter extends RecyclerView.Adapter<BinderViewHolder> {
                 break;
 
             case ManageTokensHolder.VIEW_TYPE:
-                ManageTokensHolder manageTokensHolder = new ManageTokensHolder(R.layout.layout_manage_tokens_with_buy, parent);
-                manageTokensHolder.setOnTokenClickListener(tokensAdapterCallback);
+                ManageTokensHolder manageTokensHolder = new ManageTokensHolder(R.layout.emp, parent);
+                //manageTokensHolder.setOnTokenClickListener(tokensAdapterCallback);
                 holder = manageTokensHolder;
+
                 break;
 
             case HeaderHolder.VIEW_TYPE:
                 holder = new HeaderHolder(R.layout.layout_tokens_header, parent);
+                //holder = new HeaderHolder(R.layout.emp, parent);
                 break;
 
             case TestNetTipsHolder.VIEW_TYPE:
@@ -248,7 +250,7 @@ public class TokensAdapter extends RecyclerView.Adapter<BinderViewHolder> {
 
     private void addManageTokensLayout() {
         if (walletAddress != null && !walletAddress.isEmpty() && tokensService.isMainNetActive()
-            && (filterType == TokenFilter.ALL || filterType == TokenFilter.ASSETS)) { //only show buy button if filtering all or assets
+            && (filterType == TokenFilter.ASSETS || filterType == TokenFilter.ASSETS)) { //only show buy button if filtering all or assets
             items.add(new ManageTokensSortedItem(new ManageTokensData(walletAddress, managementLauncher)));
         }
     }
@@ -299,7 +301,7 @@ public class TokensAdapter extends RecyclerView.Adapter<BinderViewHolder> {
                 tsi.setFiatValue(tokensService.getTokenFiatValue(token.getChain(), token.getAddress()));
                 if (debugView) tsi.debug();
                 position = items.add(tsi);
-                addHeaderLayout(token);
+                //addHeaderLayout(token);
             }
 
             if (notify) notifyItemChanged(position);
@@ -368,10 +370,10 @@ public class TokensAdapter extends RecyclerView.Adapter<BinderViewHolder> {
 
         switch (filterType)
         {
-            case ALL:
-                // Show all
-                // if (token.isNFT()) allowThroughFilter = false;
-                break;
+//            case ALL:
+//                // Show all
+//                // if (token.isNFT()) allowThroughFilter = false;
+//                break;
             case ASSETS:
                 allowThroughFilter = allowThroughFilter && token.group == TokenGroup.ASSET;
                 break;

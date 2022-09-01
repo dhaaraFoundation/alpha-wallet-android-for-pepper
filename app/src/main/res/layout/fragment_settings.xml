@@ -23,17 +23,18 @@
             <com.alphawallet.app.widget.NotificationView
                 android:id="@+id/notification"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" >
+
+                <com.alphawallet.app.widget.StandardHeader
+                    android:id="@+id/layout_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    custom:headerText="@string/wallet_label" />
+            </com.alphawallet.app.widget.NotificationView>
 
             <include layout="@layout/item_warning" />
 
             <include layout="@layout/item_update" />
-
-            <com.alphawallet.app.widget.StandardHeader
-                android:id="@+id/layout_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                custom:headerText="@string/wallet_label" />
 
             <LinearLayout
                 android:id="@+id/layout_settings_wallet"
