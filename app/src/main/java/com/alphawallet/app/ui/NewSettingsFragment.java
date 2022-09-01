@@ -239,6 +239,14 @@ public class NewSettingsFragment extends BaseFragment
         supportSettingsLayout = view.findViewById(R.id.layout_settings_support);
         updateLayout = view.findViewById(R.id.layout_update);
 
+
+        myAddressSetting =
+                new SettingsItemView.Builder(getContext())
+                        .withIcon(R.drawable.ic_settings_wallet_address)
+                        .withTitle(R.string.general)
+                        .withListener(this::openGeneralSetiingClicked)
+                        .build();
+
         myAddressSetting =
                 new SettingsItemView.Builder(getContext())
                         .withIcon(R.drawable.ic_settings_wallet_address)
@@ -422,6 +430,7 @@ public class NewSettingsFragment extends BaseFragment
 
 
     }
+
 
     private void setInitialSettingsData(View view)
     {
@@ -926,5 +935,10 @@ public class NewSettingsFragment extends BaseFragment
                     Toast.makeText(getContext(), getString(R.string.toast_browser_cache_cleared), Toast.LENGTH_SHORT).show();
                     getActivity().finish();
                 }).isDisposed();
+    }
+
+    private void openGeneralSetiingClicked(){
+        Intent intent = new Intent(getActivity(), SettingGeneral.class);
+        startActivity(intent);
     }
 }
