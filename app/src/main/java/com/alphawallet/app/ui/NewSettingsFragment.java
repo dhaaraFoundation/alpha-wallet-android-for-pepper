@@ -126,16 +126,17 @@ public class NewSettingsFragment extends BaseFragment
     private LinearLayout walletSettingsLayout;
     private LinearLayout systemSettingsLayout;
     private LinearLayout supportSettingsLayout;
+    private SettingsItemView generalsetting;
     private SettingsItemView myAddressSetting;
     private SettingsItemView changeWalletSetting;
     private SettingsItemView backUpWalletSetting;
     private SettingsItemView notificationsSetting;
-    private SettingsItemView changeLanguage;
-    private SettingsItemView changeCurrency;
+//    private SettingsItemView changeLanguage;
+//    private SettingsItemView changeCurrency;
     private SettingsItemView biometricsSetting;
-    private SettingsItemView selectNetworksSetting;
+//    private SettingsItemView selectNetworksSetting;
     private SettingsItemView advancedSetting;
-    private SettingsItemView darkModeSetting;
+//    private SettingsItemView darkModeSetting;
     private SettingsItemView supportSetting;
     private SettingsItemView walletConnectSetting;
     private SettingsItemView showSeedPhrase;
@@ -240,11 +241,11 @@ public class NewSettingsFragment extends BaseFragment
         updateLayout = view.findViewById(R.id.layout_update);
 
 
-        myAddressSetting =
+        generalsetting =
                 new SettingsItemView.Builder(getContext())
-                        .withIcon(R.drawable.ic_settings_wallet_address)
+                        .withIcon(R.drawable.ic_setting_general)
                         .withTitle(R.string.general)
-                        .withListener(this::openGeneralSetiingClicked)
+                        .withListener(this::onGeneralSettingClicked)
                         .build();
 
         myAddressSetting =
@@ -287,25 +288,25 @@ public class NewSettingsFragment extends BaseFragment
                         .withListener(this::onWalletConnectSettingClicked)
                         .build();
 
-        notificationsSetting =
-                new SettingsItemView.Builder(getContext())
-                        .withType(SettingsItemView.Type.TOGGLE)
-                        .withIcon(R.drawable.ic_settings_notifications)
-                        .withTitle(R.string.title_notifications)
-                        .withListener(this::onNotificationsSettingClicked)
-                        .build();
+//        notificationsSetting =
+//                new SettingsItemView.Builder(getContext())
+//                        .withType(SettingsItemView.Type.TOGGLE)
+//                        .withIcon(R.drawable.ic_settings_notifications)
+//                        .withTitle(R.string.title_notifications)
+//                        .withListener(this::onNotificationsSettingClicked)
+//                        .build();
 
-        changeLanguage = new SettingsItemView.Builder(getContext())
-                .withIcon(R.drawable.ic_settings_language)
-                .withTitle(R.string.title_change_language)
-                .withListener(this::onChangeLanguageClicked)
-                .build();
-
-        changeCurrency = new SettingsItemView.Builder(getContext())
-                .withIcon(R.drawable.ic_currency)
-                .withTitle(R.string.settings_locale_currency)
-                .withListener(this::onChangeCurrencyClicked)
-                .build();
+//        changeLanguage = new SettingsItemView.Builder(getContext())
+//                .withIcon(R.drawable.ic_settings_language)
+//                .withTitle(R.string.title_change_language)
+//                .withListener(this::onChangeLanguageClicked)
+//                .build();
+//
+//        changeCurrency = new SettingsItemView.Builder(getContext())
+//                .withIcon(R.drawable.ic_currency)
+//                .withTitle(R.string.settings_locale_currency)
+//                .withListener(this::onChangeCurrencyClicked)
+//                .build();
 
 //        biometricsSetting =
 //                new SettingsItemView.Builder(getContext())
@@ -315,12 +316,12 @@ public class NewSettingsFragment extends BaseFragment
 //                        .withListener(this::onBiometricsSettingClicked)
 //                        .build();
 
-        selectNetworksSetting =
-                new SettingsItemView.Builder(getContext())
-                        .withIcon(R.drawable.ic_settings_networks)
-                        .withTitle(R.string.select_active_networks)
-                        .withListener(this::onSelectNetworksSettingClicked)
-                        .build();
+//        selectNetworksSetting =
+//                new SettingsItemView.Builder(getContext())
+//                        .withIcon(R.drawable.ic_settings_networks)
+//                        .withTitle(R.string.select_active_networks)
+//                        .withListener(this::onSelectNetworksSettingClicked)
+//                        .build();
 
         advancedSetting =
                 new SettingsItemView.Builder(getContext())
@@ -334,12 +335,12 @@ public class NewSettingsFragment extends BaseFragment
                 .withListener(this::onClearBrowserCacheClicked)
                 .build();
 
-        darkModeSetting =
-                new SettingsItemView.Builder(getContext())
-                        .withIcon(R.drawable.ic_settings_darkmode)
-                        .withTitle(R.string.title_dark_mode)
-                        .withListener(this::onDarkModeSettingClicked)
-                        .build();
+//        darkModeSetting =
+//                new SettingsItemView.Builder(getContext())
+//                        .withIcon(R.drawable.ic_settings_darkmode)
+//                        .withTitle(R.string.title_dark_mode)
+//                        .withListener(this::onDarkModeSettingClicked)
+//                        .build();
 
         supportSetting =
                 new SettingsItemView.Builder(getContext())
@@ -389,6 +390,7 @@ public class NewSettingsFragment extends BaseFragment
         int systemIndex = 0;
         int supportIndex = 0;
 
+        walletSettingsLayout.addView(generalsetting, walletIndex++);
         walletSettingsLayout.addView(myAddressSetting, walletIndex++);
 
         if (CustomViewSettings.canChangeWallets())
@@ -403,24 +405,24 @@ public class NewSettingsFragment extends BaseFragment
 
         walletSettingsLayout.addView(walletConnectSetting, walletIndex++);
 
-        if (CustomViewSettings.getLockedChains().size() == 0)
-            systemSettingsLayout.addView(selectNetworksSetting, systemIndex++);
+//        if (CustomViewSettings.getLockedChains().size() == 0)
+//            systemSettingsLayout.addView(selectNetworksSetting, systemIndex++);
 
         if (biometricsSetting != null)
             systemSettingsLayout.addView(biometricsSetting, systemIndex++);
 
-        systemSettingsLayout.addView(notificationsSetting, systemIndex++);
+//        systemSettingsLayout.addView(notificationsSetting, systemIndex++);
 
-        systemSettingsLayout.addView(changeLanguage, systemIndex++);
+//        systemSettingsLayout.addView(changeLanguage, systemIndex++);
+//
+//        systemSettingsLayout.addView(changeCurrency, systemIndex++);
 
-        systemSettingsLayout.addView(changeCurrency, systemIndex++);
-
-        systemSettingsLayout.addView(darkModeSetting, systemIndex++);
+//        systemSettingsLayout.addView(darkModeSetting, systemIndex++);
 
         //systemSettingsLayout.addView(advancedSetting, systemIndex++);
         systemSettingsLayout.addView(clearBrowserCache, systemIndex++);
 
-        //supportSettingsLayout.addView(supportSetting, supportIndex++);
+        supportSettingsLayout.addView(supportSetting, supportIndex++);
         supportSettingsLayout.addView(telegram, supportIndex++);
 //        supportSettingsLayout.addView(discord, supportIndex++);
 //        supportSettingsLayout.addView(email, supportIndex++);
@@ -439,7 +441,7 @@ public class NewSettingsFragment extends BaseFragment
         //TextView tokenScriptVersionText = view.findViewById(R.id.text_tokenscript_compatibility);
         //tokenScriptVersionText.setText(TOKENSCRIPT_CURRENT_SCHEMA);
 
-        notificationsSetting.setToggleState(viewModel.getNotificationState());
+//        notificationsSetting.setToggleState(viewModel.getNotificationState());
     }
 
     private void openShowSeedPhrase(Wallet wallet)
@@ -544,9 +546,9 @@ public class NewSettingsFragment extends BaseFragment
 
         viewModel.setLocale(getContext());
 
-        changeLanguage.setSubtitle(LocaleUtils.getDisplayLanguage(viewModel.getActiveLocale(), viewModel.getActiveLocale()));
-
-        changeCurrency.setSubtitle(viewModel.getDefaultCurrency());
+//        changeLanguage.setSubtitle(LocaleUtils.getDisplayLanguage(viewModel.getActiveLocale(), viewModel.getActiveLocale()));
+//
+//        changeCurrency.setSubtitle(viewModel.getDefaultCurrency());
     }
 
     @Override
@@ -654,10 +656,10 @@ public class NewSettingsFragment extends BaseFragment
         requireActivity().startActivity(intent);
     }
 
-    private void onNotificationsSettingClicked()
-    {
-        viewModel.setNotificationState(notificationsSetting.getToggleState());
-    }
+//    private void onNotificationsSettingClicked()
+//    {
+//        viewModel.setNotificationState(notificationsSetting.getToggleState());
+//    }
 
     private void onBiometricsSettingClicked()
     {
@@ -677,11 +679,11 @@ public class NewSettingsFragment extends BaseFragment
         advancedSettingsHandler.launch(intent);
     }
 
-    private void onDarkModeSettingClicked()
-    {
-        Intent intent = new Intent(getActivity(), SelectThemeActivity.class);
-        startActivity(intent);
-    }
+//    private void onDarkModeSettingClicked()
+//    {
+//        Intent intent = new Intent(getActivity(), SelectThemeActivity.class);
+//        startActivity(intent);
+//    }
 
     private void onSupportSettingClicked()
     {
@@ -937,8 +939,11 @@ public class NewSettingsFragment extends BaseFragment
                 }).isDisposed();
     }
 
-    private void openGeneralSetiingClicked(){
+    private void onGeneralSettingClicked()
+    {
         Intent intent = new Intent(getActivity(), SettingGeneral.class);
         startActivity(intent);
     }
+
+
 }

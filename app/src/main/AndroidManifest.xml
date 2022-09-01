@@ -34,7 +34,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:name, android:theme, android:allowBackup">
         <activity
-            android:name=".SettingGeneral"
+            android:name=".ui.SettingGeneral"
             android:exported="false" />
         <activity
             android:name=".ui.HomeActivity"

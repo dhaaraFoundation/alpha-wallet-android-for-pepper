@@ -830,6 +830,8 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
         }
     }
 
+
+
     private class ScreenSlidePagerAdapter extends FragmentStateAdapter
     {
         public ScreenSlidePagerAdapter(@NonNull FragmentActivity fragmentActivity)
