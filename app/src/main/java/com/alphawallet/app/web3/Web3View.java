@@ -365,7 +365,10 @@ public class Web3View extends WebView {
             {
                 if (loadInterface != null)
                 {
-                    loadInterface.onWebpageLoaded(url, view.getTitle());
+                    if(url!= null)
+                    {
+                        loadInterface.onWebpageLoaded(url, view.getTitle());
+                    }
                 }
             }
             else if (!loadingError && loadInterface != null)

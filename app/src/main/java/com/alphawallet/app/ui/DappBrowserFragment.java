@@ -703,6 +703,7 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
     // TODO: Move all nav stuff to widget
     private void openURLInputView()
     {
+        clearAddressBar();
         urlTv.setAdapter(null);
         expandCollapseView(layoutNavigation, false);
 

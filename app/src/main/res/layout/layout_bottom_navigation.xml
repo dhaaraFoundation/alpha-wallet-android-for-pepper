@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"
+        android:background="@color/bottom_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -38,7 +39,7 @@
             android:text="@string/activity_label"
             android:textColor="@color/selector_bottom_navigation"
             app:drawableTint="@color/selector_bottom_navigation"
-            app:drawableTopCompat="@drawable/ic_tab_activity" />
+            app:drawableTopCompat="@drawable/ic_swap_icon" />
 
         <TextView
             android:id="@+id/nav_browser_text"
@@ -50,7 +51,7 @@
             android:text="@string/browser_label"
             android:textColor="@color/selector_bottom_navigation"
             app:drawableTint="@color/selector_bottom_navigation"
-            app:drawableTopCompat="@drawable/ic_tab_browser" />
+            app:drawableTopCompat="@drawable/ic_web_icon" />
 
         <RelativeLayout
             android:id="@+id/settings_tab"

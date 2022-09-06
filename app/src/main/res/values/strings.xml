@@ -974,4 +974,5 @@
     <string name="delete_empty">Delete Empty</string>
     <string name="delete_all">Delete All</string>
     <string name="general">General</string>
+    <string name="wallet">Wallet</string>
 </resources>

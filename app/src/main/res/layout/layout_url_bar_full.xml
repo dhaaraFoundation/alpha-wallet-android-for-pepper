@@ -77,13 +77,14 @@
                     android:hint="@string/search_or_type_web_address"
                     android:imeOptions="actionGo"
                     android:inputType="textUri"
-                    android:padding="@dimen/tiny_8" />
+                    android:padding="@dimen/tiny_7" />
 
                 <ImageView
                     android:id="@+id/clear_url"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignEnd="@id/url_tv"
+                    android:layout_alignParentEnd="@+id/url_tv"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/mini_4"
                     android:padding="@dimen/mini_4"

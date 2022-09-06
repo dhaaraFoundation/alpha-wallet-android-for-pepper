@@ -393,6 +393,8 @@ public class WalletFragment extends BaseFragment implements
     private void initTabLayout(View view)
     {
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+        tabLayout.setVerticalScrollBarEnabled(false);
+        tabLayout.setHorizontalScrollBarEnabled(false);
         if (CustomViewSettings.hideTabBar())
         {
             tabLayout.setVisibility(View.GONE);
@@ -404,6 +406,8 @@ public class WalletFragment extends BaseFragment implements
         tabLayout.addTab(tabLayout.newTab().setText(R.string.defi_header));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.governance_header));
         //tabLayout.addTab(tabLayout.newTab().setText(R.string.attestations));
+
+
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
         {

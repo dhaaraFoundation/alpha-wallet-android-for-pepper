@@ -33,7 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            app:layout_scrollFlags="enterAlways" />
+            android:scrollbars="none"
+            android:background="@color/bottom_bg"
+            />
 
         <View style="@style/Aw.Component.Separator" />
 
@@ -52,6 +54,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
+            android:background="@color/bottom_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -73,4 +76,6 @@
         tools:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 

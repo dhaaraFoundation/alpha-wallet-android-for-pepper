@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,6 +128,7 @@ public class NewSettingsFragment extends BaseFragment
     private LinearLayout systemSettingsLayout;
     private LinearLayout supportSettingsLayout;
     private SettingsItemView generalsetting;
+    private SettingsItemView walletsetting;
     private SettingsItemView myAddressSetting;
     private SettingsItemView changeWalletSetting;
     private SettingsItemView backUpWalletSetting;
@@ -138,9 +140,9 @@ public class NewSettingsFragment extends BaseFragment
     private SettingsItemView advancedSetting;
 //    private SettingsItemView darkModeSetting;
     private SettingsItemView supportSetting;
-    private SettingsItemView walletConnectSetting;
+//    private SettingsItemView walletConnectSetting;
     private SettingsItemView showSeedPhrase;
-    private SettingsItemView nameThisWallet;
+//    private SettingsItemView nameThisWallet;
     private SettingsItemView telegram;
     private SettingsItemView discord;
     private SettingsItemView email;
@@ -248,6 +250,13 @@ public class NewSettingsFragment extends BaseFragment
                         .withListener(this::onGeneralSettingClicked)
                         .build();
 
+        walletsetting =
+                new SettingsItemView.Builder(getContext())
+                        .withIcon(R.drawable.ic_setting_wallet)
+                        .withTitle(R.string.wallet)
+                        .withListener(this::onWalletSettingClicked)
+                        .build();
+
         myAddressSetting =
                 new SettingsItemView.Builder(getContext())
                         .withIcon(R.drawable.ic_settings_wallet_address)
@@ -275,18 +284,18 @@ public class NewSettingsFragment extends BaseFragment
                 .withListener(this::onShowSeedPhrase) //onShow
                 .build();
 
-        nameThisWallet = new SettingsItemView.Builder(getContext())
-                .withIcon(R.drawable.ic_settings_name_this_wallet)
-                .withTitle(R.string.name_this_wallet)
-                .withListener(this::onNameThisWallet)
-                .build();
-
-        walletConnectSetting =
-                new SettingsItemView.Builder(getContext())
-                        .withIcon(R.drawable.ic_wallet_connect)
-                        .withTitle(R.string.title_wallet_connect)
-                        .withListener(this::onWalletConnectSettingClicked)
-                        .build();
+//        nameThisWallet = new SettingsItemView.Builder(getContext())
+//                .withIcon(R.drawable.ic_settings_name_this_wallet)
+//                .withTitle(R.string.name_this_wallet)
+//                .withListener(this::onNameThisWallet)
+//                .build();
+//
+//        walletConnectSetting =
+//                new SettingsItemView.Builder(getContext())
+//                        .withIcon(R.drawable.ic_wallet_connect)
+//                        .withTitle(R.string.title_wallet_connect)
+//                        .withListener(this::onWalletConnectSettingClicked)
+//                        .build();
 
 //        notificationsSetting =
 //                new SettingsItemView.Builder(getContext())
@@ -391,19 +400,20 @@ public class NewSettingsFragment extends BaseFragment
         int supportIndex = 0;
 
         walletSettingsLayout.addView(generalsetting, walletIndex++);
+        walletSettingsLayout.addView(walletsetting, walletIndex++);
         walletSettingsLayout.addView(myAddressSetting, walletIndex++);
 
-        if (CustomViewSettings.canChangeWallets())
-            walletSettingsLayout.addView(changeWalletSetting, walletIndex++);
+//        if (CustomViewSettings.canChangeWallets())
+//            walletSettingsLayout.addView(changeWalletSetting, walletIndex++);
 
         walletSettingsLayout.addView(backUpWalletSetting, walletIndex++);
 
         walletSettingsLayout.addView(showSeedPhrase, walletIndex++);
         showSeedPhrase.setVisibility(View.GONE);
 
-        walletSettingsLayout.addView(nameThisWallet, walletIndex++);
+//        walletSettingsLayout.addView(nameThisWallet, walletIndex++);
 
-        walletSettingsLayout.addView(walletConnectSetting, walletIndex++);
+//        walletSettingsLayout.addView(walletConnectSetting, walletIndex++);
 
 //        if (CustomViewSettings.getLockedChains().size() == 0)
 //            systemSettingsLayout.addView(selectNetworksSetting, systemIndex++);
@@ -422,7 +432,7 @@ public class NewSettingsFragment extends BaseFragment
         //systemSettingsLayout.addView(advancedSetting, systemIndex++);
         systemSettingsLayout.addView(clearBrowserCache, systemIndex++);
 
-        supportSettingsLayout.addView(supportSetting, supportIndex++);
+//        supportSettingsLayout.addView(supportSetting, supportIndex++);
         supportSettingsLayout.addView(telegram, supportIndex++);
 //        supportSettingsLayout.addView(discord, supportIndex++);
 //        supportSettingsLayout.addView(email, supportIndex++);
@@ -635,6 +645,7 @@ public class NewSettingsFragment extends BaseFragment
     private void onBackUpWalletSettingClicked()
     {
         Wallet wallet = viewModel.defaultWallet().getValue();
+        Log.d("data",wallet.toString());
         if (wallet != null)
         {
             openBackupActivity(wallet);
@@ -650,11 +661,11 @@ public class NewSettingsFragment extends BaseFragment
         }
     }
 
-    private void onNameThisWallet()
-    {
-        Intent intent = new Intent(getActivity(), NameThisWalletActivity.class);
-        requireActivity().startActivity(intent);
-    }
+//    private void onNameThisWallet()
+//    {
+//        Intent intent = new Intent(getActivity(), NameThisWalletActivity.class);
+//        requireActivity().startActivity(intent);
+//    }
 
 //    private void onNotificationsSettingClicked()
 //    {
@@ -691,12 +702,12 @@ public class NewSettingsFragment extends BaseFragment
         startActivity(intent);
     }
 
-    private void onWalletConnectSettingClicked()
-    {
-        Intent intent = new Intent(getActivity(), WalletConnectSessionActivity.class);
-        intent.putExtra("wallet", wallet);
-        startActivity(intent);
-    }
+//    private void onWalletConnectSettingClicked()
+//    {
+//        Intent intent = new Intent(getActivity(), WalletConnectSessionActivity.class);
+//        intent.putExtra("wallet", wallet);
+//        startActivity(intent);
+//    }
 
     private void checkPendingUpdate(View view)
     {
@@ -942,6 +953,13 @@ public class NewSettingsFragment extends BaseFragment
     private void onGeneralSettingClicked()
     {
         Intent intent = new Intent(getActivity(), SettingGeneral.class);
+        startActivity(intent);
+    }
+
+    private void onWalletSettingClicked()
+    {
+        Intent intent = new Intent(getActivity(), SettingWallet.class);
+        intent.putExtra("wallet_value",viewModel.defaultWallet().getValue().toString());
         startActivity(intent);
     }
 

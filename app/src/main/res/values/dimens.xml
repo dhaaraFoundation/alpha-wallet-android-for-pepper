@@ -56,6 +56,7 @@
     <dimen name="micro_2">2dp</dimen>
     <dimen name="mini_4">4dp</dimen>
     <dimen name="tiny_8">8dp</dimen>
+    <dimen name="tiny_7">7dp</dimen>
     <dimen name="small_12">12dp</dimen>
     <dimen name="standard_16">16dp</dimen>
     <dimen name="cozy_20">20dp</dimen>

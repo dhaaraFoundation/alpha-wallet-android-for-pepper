@@ -28,6 +28,7 @@
     <color name="brand_inverse">@color/white</color>
     <!-- ?colorAccent -->
     <color name="accent">@color/brand</color>
+
     <!-- ?colorError -->
     <color name="error">@color/danger</color>
     <!-- ?colorOnError -->

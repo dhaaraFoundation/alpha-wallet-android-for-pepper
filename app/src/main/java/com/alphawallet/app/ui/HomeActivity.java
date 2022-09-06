@@ -810,7 +810,8 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
         {
             showPage(DAPP_BROWSER);
             DappBrowserFragment dappFrag = (DappBrowserFragment) getFragment(DAPP_BROWSER);
-            if (!dappFrag.isDetached()) dappFrag.loadDirect(openLink);
+            if (!dappFrag.isDetached())
+//                dappFrag.loadDirect(openLink);
             openLink = null;
             viewModel.storeCurrentFragmentId(-1);
         }

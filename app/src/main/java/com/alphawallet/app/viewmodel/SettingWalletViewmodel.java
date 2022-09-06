@@ -1,10 +1,9 @@
 package com.alphawallet.app.viewmodel;
 
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import android.content.Context;
-import android.util.Log;
 
 import com.alphawallet.app.entity.CurrencyItem;
 import com.alphawallet.app.entity.LocaleItem;
@@ -27,8 +26,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.Single;
 
 @HiltViewModel
-public class NewSettingsViewModel extends BaseViewModel {
-
+public class SettingWalletViewmodel extends BaseViewModel
+{
     private final MutableLiveData<Wallet> defaultWallet = new MutableLiveData<>();
     private final MutableLiveData<Transaction[]> transactions = new MutableLiveData<>();
     private final MutableLiveData<String> backUpMessage = new MutableLiveData<>();
@@ -41,7 +40,7 @@ public class NewSettingsViewModel extends BaseViewModel {
     private final TransactionsService transactionsService;
 
     @Inject
-    NewSettingsViewModel(
+    SettingWalletViewmodel(
             GenericWalletInteract genericWalletInteract,
             MyAddressRouter myAddressRouter,
             ManageWalletsRouter manageWalletsRouter,
@@ -116,6 +115,7 @@ public class NewSettingsViewModel extends BaseViewModel {
     public LiveData<Transaction[]> transactions() {
         return transactions;
     }
+
     public LiveData<String> backUpMessage() { return backUpMessage; }
 
     public void prepare() {
@@ -140,13 +140,7 @@ public class NewSettingsViewModel extends BaseViewModel {
     }
 
     public void showMyAddress(Context context) {
-        try
-        {
-            Log.d("wallet", defaultWallet.getValue().toString());
-            myAddressRouter.open(context, defaultWallet.getValue());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        myAddressRouter.open(context, defaultWallet.getValue());
     }
 
     public void setIsDismissed(String walletAddr, boolean isDismissed)
