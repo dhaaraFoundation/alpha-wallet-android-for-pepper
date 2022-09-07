@@ -8,6 +8,7 @@ import com.pepperwallet.app.ui.HomeActivity;
 
 public class HomeRouter {
     public void open(Context context, boolean isClearStack) {
+
         Intent intent = new Intent(context, HomeActivity.class);
         intent.putExtra(C.FROM_HOME_ROUTER, C.FROM_HOME_ROUTER); //HomeRouter should restart the app at the wallet
         if (isClearStack) {
