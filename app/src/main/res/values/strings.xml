@@ -975,4 +975,13 @@
     <string name="delete_all">Delete All</string>
     <string name="general">General</string>
     <string name="wallet">Wallet</string>
+    <string name="send">Send</string>
+    <string name="recieve">Recieve</string>
+    <string name="buy">Buy</string>
+    <string name="knp">FpcWX....SKNp</string>
+    <string name="from_">From</string>
+    <string name="max">Max</string>
+    <string name="usd">USDC</string>
+    <string name="ana">ANA</string>
+    <string name="comingsoon">Coming Soon</string>
 </resources>

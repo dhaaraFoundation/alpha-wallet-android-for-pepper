@@ -34,7 +34,7 @@
 #endif
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_repository_EthereumNetworkBase_getAmberDataKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_repository_EthereumNetworkBase_getAmberDataKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, amberdataKey);
@@ -45,7 +45,7 @@ Java_com_alphawallet_app_repository_EthereumNetworkBase_getAmberDataKey( JNIEnv*
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_repository_EthereumNetworkBase_getInfuraKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_repository_EthereumNetworkBase_getInfuraKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, infuraKey);
@@ -58,7 +58,7 @@ Java_com_alphawallet_app_repository_EthereumNetworkBase_getInfuraKey( JNIEnv* en
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_TickerService_getAmberDataKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_service_TickerService_getAmberDataKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, amberdataKey);
@@ -69,7 +69,7 @@ Java_com_alphawallet_app_service_TickerService_getAmberDataKey( JNIEnv* env, job
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_TickerService_getCMCKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_service_TickerService_getCMCKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, cmcKey);
@@ -80,7 +80,7 @@ Java_com_alphawallet_app_service_TickerService_getCMCKey( JNIEnv* env, jobject t
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_AnalyticsService_getAnalyticsKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_service_AnalyticsService_getAnalyticsKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, mixpanelKey);
@@ -91,7 +91,7 @@ Java_com_alphawallet_app_service_AnalyticsService_getAnalyticsKey( JNIEnv* env, 
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_viewmodel_Erc20DetailViewModel_getRampKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_viewmodel_Erc20DetailViewModel_getRampKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, rampKey);
@@ -102,7 +102,7 @@ Java_com_alphawallet_app_viewmodel_Erc20DetailViewModel_getRampKey( JNIEnv* env,
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_repository_OnRampRepository_getRampKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_repository_OnRampRepository_getRampKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, rampKey);
@@ -113,7 +113,7 @@ Java_com_alphawallet_app_repository_OnRampRepository_getRampKey( JNIEnv* env, jo
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_repository_EthereumNetworkBase_getSecondaryInfuraKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_repository_EthereumNetworkBase_getSecondaryInfuraKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, secondaryInfuraKey);
@@ -126,7 +126,7 @@ Java_com_alphawallet_app_repository_EthereumNetworkBase_getSecondaryInfuraKey( J
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_TransactionsNetworkClient_getBSCExplorerKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_service_TransactionsNetworkClient_getBSCExplorerKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getBSCExplorerKey(env);
@@ -136,7 +136,7 @@ Java_com_alphawallet_app_service_TransactionsNetworkClient_getBSCExplorerKey( JN
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_TransactionsNetworkClient_getEtherscanKey( JNIEnv* env, jclass thiz )
+Java_com_pepperwallet_app_service_TransactionsNetworkClient_getEtherscanKey( JNIEnv* env, jclass thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, etherscanKey);
@@ -147,7 +147,7 @@ Java_com_alphawallet_app_service_TransactionsNetworkClient_getEtherscanKey( JNIE
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_GasService_getEtherscanKey( JNIEnv* env, jobject thiz )
+Java_com_pepperwallet_app_service_GasService_getEtherscanKey( JNIEnv* env, jobject thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, etherscanKey);
@@ -158,7 +158,7 @@ Java_com_alphawallet_app_service_GasService_getEtherscanKey( JNIEnv* env, jobjec
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_widget_EmailPromptView_getMailchimpKey(JNIEnv *env, jclass clazz) {
+Java_com_pepperwallet_app_widget_EmailPromptView_getMailchimpKey(JNIEnv *env, jclass clazz) {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, mailchimpKey);
 #else
@@ -168,7 +168,7 @@ Java_com_alphawallet_app_widget_EmailPromptView_getMailchimpKey(JNIEnv *env, jcl
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_GasService_getPolygonScanKey(JNIEnv *env, jobject thiz) {
+Java_com_pepperwallet_app_service_GasService_getPolygonScanKey(JNIEnv *env, jobject thiz) {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, polygonScanKey);
 #elif (HAS_PS == 1)
@@ -180,13 +180,13 @@ Java_com_alphawallet_app_service_GasService_getPolygonScanKey(JNIEnv *env, jobje
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_TransactionsNetworkClient_getPolygonScanKey( JNIEnv* env, jclass thiz )
+Java_com_pepperwallet_app_service_TransactionsNetworkClient_getPolygonScanKey( JNIEnv* env, jclass thiz )
 {
-    return Java_com_alphawallet_app_service_GasService_getPolygonScanKey(env, thiz);
+    return Java_com_pepperwallet_app_service_GasService_getPolygonScanKey(env, thiz);
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_TransactionsNetworkClient_getCovalentKey( JNIEnv* env, jclass thiz )
+Java_com_pepperwallet_app_service_TransactionsNetworkClient_getCovalentKey( JNIEnv* env, jclass thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedCKey(env, 4, '_', covalentKey);
@@ -197,7 +197,7 @@ Java_com_alphawallet_app_service_TransactionsNetworkClient_getCovalentKey( JNIEn
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_TransactionsNetworkClient_getAuroraScanKey( JNIEnv* env, jclass thiz )
+Java_com_pepperwallet_app_service_TransactionsNetworkClient_getAuroraScanKey( JNIEnv* env, jclass thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, auroraKey);
@@ -210,7 +210,7 @@ Java_com_alphawallet_app_service_TransactionsNetworkClient_getAuroraScanKey( JNI
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_service_OpenSeaService_getOpenSeaKey( JNIEnv* env, jclass thiz )
+Java_com_pepperwallet_app_service_OpenSeaService_getOpenSeaKey( JNIEnv* env, jclass thiz )
 {
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, openSeaKey);
@@ -223,7 +223,7 @@ Java_com_alphawallet_app_service_OpenSeaService_getOpenSeaKey( JNIEnv* env, jcla
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_alphawallet_app_util_AWEnsResolver_getOpenSeaKey( JNIEnv* env, jclass thiz )
+Java_com_pepperwallet_app_util_AWEnsResolver_getOpenSeaKey( JNIEnv* env, jclass thiz )
 {
-    return Java_com_alphawallet_app_service_OpenSeaService_getOpenSeaKey(env, thiz);
+    return Java_com_pepperwallet_app_service_OpenSeaService_getOpenSeaKey(env, thiz);
 }

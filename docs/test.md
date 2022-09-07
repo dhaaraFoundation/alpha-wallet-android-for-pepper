@@ -1,8 +1,9 @@
 ## E2E test
 ### Quick Start
 1. Create a test class under source set `androidTest` and extends `BaseE2ETest`
+
 ```Java
-package com.alphawallet.app;
+package com.pepperwallet.app;
 
 public class ManageNetworkTest extends BaseE2ETest
 {

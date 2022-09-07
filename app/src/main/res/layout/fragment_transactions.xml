@@ -19,13 +19,13 @@
         android:layout_below="@id/separator">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
+            android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.alphawallet.app.widget.SystemView
+    <com.pepperwallet.app.widget.SystemView
         android:id="@+id/system_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -63,7 +63,7 @@
 
     <style name="Aw.Component.TabLayout.Scrollable">
         <item name="tabMode">scrollable</item>
-        <item name="tabGravity">center</item>
+        <item name="tabGravity">start</item>
     </style>
 
     <style name="Aw.Component.ChartTabLayout" parent="Widget.Design.TabLayout">

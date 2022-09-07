@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/standard_16">
@@ -12,23 +12,58 @@
         style="@style/Aw.Typography.Title.XLarge.Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:layout_gravity="start"
+        android:gravity="start"
         android:lines="1"
         android:text="@string/unknown_balance_without_symbol"
         app:autoSizeTextType="uniform"
-        tools:text="$100,000,000,000,000.00" />
+        tools:text="$0" />
 
     <TextView
         android:id="@+id/subtitle"
         style="@style/Aw.Typography.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="start"
         android:gravity="center"
         android:lines="1"
         android:text="@string/unknown_balance_without_symbol"
         app:autoSizeTextType="uniform"
-        tools:text="+100.00 Today (+100%)" />
+        tools:text="@string/knp" />
 
 </LinearLayout>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:orientation="vertical"-->
+    <!--    android:padding="@dimen/standard_16">-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/title"-->
+    <!--        style="@style/Aw.Typography.Title.XLarge.Bold"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:gravity="center"-->
+    <!--        android:lines="1"-->
+    <!--        android:text="@string/unknown_balance_without_symbol"-->
+    <!--        app:autoSizeTextType="uniform"-->
+    <!--        tools:text="$100,000,000,000,000.00" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/subtitle"-->
+    <!--        style="@style/Aw.Typography.Title"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:gravity="center"-->
+    <!--        android:lines="1"-->
+    <!--        android:text="@string/unknown_balance_without_symbol"-->
+    <!--        app:autoSizeTextType="uniform"-->
+    <!--        tools:text="+100.00 Today (+100%)" />-->
+
+    <!--</LinearLayout>-->

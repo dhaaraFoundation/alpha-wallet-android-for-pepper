@@ -72,10 +72,11 @@ android {
         }
     }
     defaultConfig {
-        versionCode 001
+        versionCode 1
         versionName "0.0.1"
 
-        applicationId "io.stormbird.wallet"
+        applicationId "com.pepperwallet.app"
+//        applicationId "io.stormbird.wallet"
         minSdkVersion 23
         targetSdkVersion 32
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

@@ -8,7 +8,7 @@
 
     <include layout="@layout/layout_simple_toolbar" />
 
-    <com.alphawallet.app.widget.InputAddress
+    <com.pepperwallet.app.widget.InputAddress
         android:id="@+id/input_address_view"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         custom:show_header="false" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/layout_progress_counter"
@@ -55,7 +55,7 @@
 
     </LinearLayout>
 
-    <com.alphawallet.app.widget.FunctionButtonBar
+    <com.pepperwallet.app.widget.FunctionButtonBar
         android:id="@+id/layoutButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

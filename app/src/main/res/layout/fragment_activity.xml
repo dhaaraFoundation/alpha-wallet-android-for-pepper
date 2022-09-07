@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_simple_toolbar" />
+
+    <View
+        android:id="@+id/separator"
+        style="@style/Aw.Component.Separator"
+        android:layout_below="@id/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separator"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/from_"
+                android:textColor="@color/bottom_selected_bg"
+                android:textSize="@dimen/dp16" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/balance"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/dp16"
+                android:textColor="@color/bottom_bg"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="@null"
+                android:hint="@string/zero"
+                android:singleLine="true"
+                android:textColor="@color/bottom_selected_bg"
+                android:textSize="@dimen/dp25"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/max"
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_toStartOf="@+id/Tvcurrencyfrom"
+                android:textColor="@color/bottom_selected_bg"
+                android:textSize="@dimen/dp20" />
+
+            <TextView
+                android:id="@+id/Tvcurrencyfrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/home_bg"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:text="@string/usd"
+                android:textColor="@color/bottom_selected_bg"
+                android:textSize="@dimen/dp20" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp30"
+            android:layout_marginBottom="@dimen/dp30"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/view1"
+                android:background="@drawable/home_bg"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:rotation="90"
+                android:layout_toLeftOf="@+id/view2"
+                android:layout_toRightOf="@+id/view1"
+                android:src="@drawable/ic_swap_icon" />
+
+            <View
+                android:layout_width="150dp"
+                android:id="@+id/view2"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_height="1dp"
+                android:background="@drawable/home_bg"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/to"
+                android:textAllCaps="true"
+                android:textColor="@color/bottom_selected_bg"
+                android:textSize="@dimen/dp16" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/balance"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/dp16"
+                android:textColor="@color/bottom_bg"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="@null"
+                android:hint="@string/zero"
+                android:singleLine="true"
+                android:textColor="@color/bottom_selected_bg"
+                android:textSize="@dimen/dp25"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/max"
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_toStartOf="@+id/Tvcurrencyto"
+                android:textColor="@color/bottom_selected_bg"
+                android:textSize="@dimen/dp20" />
+
+            <TextView
+                android:id="@+id/Tvcurrencyto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/home_bg"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:text="@string/ana"
+                android:textColor="@color/bottom_selected_bg"
+                android:textSize="@dimen/dp20" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+<!--    <com.alphawallet.app.widget.SystemView-->
+<!--        android:id="@+id/system_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="?actionBarSize"-->
+<!--        tools:visibility="gone" />-->
+
+</RelativeLayout>

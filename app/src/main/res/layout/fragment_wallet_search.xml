@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.alphawallet.app.widget.SearchToolbar
+    <com.pepperwallet.app.widget.SearchToolbar
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -17,7 +17,7 @@
         android:layout_margin="@dimen/small_12" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

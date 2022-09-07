@@ -17,15 +17,56 @@
             app:layout_scrollFlags="scroll|snap"
             app:titleEnabled="false">
 
-            <include layout="@layout/layout_simple_toolbar_with_avatar" />
+            <include layout="@layout/layout_home_header"/>
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <com.alphawallet.app.widget.LargeTitleView
-            android:id="@+id/large_title_view"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|snap" />
+            android:layout_margin="@dimen/dp10"
+            android:weightSum="3.02"
+            android:background="@drawable/home_bg"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/send"
+                android:gravity="center"
+                android:id="@+id/TvSend"
+                android:padding="@dimen/dp10"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.01"
+                android:background="@color/bottom_selected_bg"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/recieve"
+                android:id="@+id/TvRecieve"
+                android:gravity="center"
+                android:padding="@dimen/dp10"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.01"
+                android:background="@color/bottom_selected_bg"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/buy"
+                android:id="@+id/TvBuy"
+                android:padding="@dimen/dp10"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
@@ -33,13 +74,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            app:tabIndicator="@null"
+            app:tabSelectedTextColor="@color/black"
+            app:tabIndicatorHeight="0dp"
+            android:clickable="false"
+            app:tabTextColor="@color/bottom_selected_bg"
             android:scrollbars="none"
-            android:background="@color/bottom_bg"
+            android:background="@drawable/home_upper_bg"
             />
 
-        <View style="@style/Aw.Component.Separator" />
+        <View style="@style/Aw.Component.Separator"
+            android:visibility="gone"/>
 
-        <com.alphawallet.app.widget.NotificationView
+        <com.pepperwallet.app.widget.NotificationView
             android:id="@+id/notification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -49,18 +99,21 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
-            android:background="@color/bottom_bg"
+            android:id="@+id/rv_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_bottom_bg" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.alphawallet.app.widget.ProgressView
+    <com.pepperwallet.app.widget.ProgressView
         android:id="@+id/progress_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -68,7 +121,7 @@
         android:layout_alignParentEnd="true"
         tools:visibility="gone" />
 
-    <com.alphawallet.app.widget.SystemView
+    <com.pepperwallet.app.widget.SystemView
         android:id="@+id/system_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -76,6 +129,3 @@
         tools:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
