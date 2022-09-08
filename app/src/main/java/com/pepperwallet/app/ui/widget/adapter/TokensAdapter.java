@@ -13,6 +13,7 @@ import com.pepperwallet.app.entity.ContractLocator;
 import com.pepperwallet.app.entity.CustomViewSettings;
 import com.pepperwallet.app.entity.TokenFilter;
 import com.pepperwallet.app.entity.tokendata.TokenGroup;
+import com.pepperwallet.app.entity.tokens.Token;
 import com.pepperwallet.app.entity.tokens.TokenCardMeta;
 import com.pepperwallet.app.repository.TokensMappingRepository;
 import com.pepperwallet.app.repository.TokensRealmSource;
@@ -147,6 +148,9 @@ public class TokensAdapter extends RecyclerView.Adapter<BinderViewHolder> {
                 TokenHolder tokenHolder = new TokenHolder(parent, assetService, tokensService);
                 tokenHolder.setOnTokenClickListener(tokensAdapterCallback);
                 holder = tokenHolder;
+//                tokenHolder.getToken();
+//                Token token = tokenHolder.getToken();// used to get token
+
                 break;
 
             case TokenGridHolder.VIEW_TYPE:

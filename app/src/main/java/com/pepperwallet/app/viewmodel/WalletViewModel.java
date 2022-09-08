@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ import com.pepperwallet.app.repository.PreferenceRepositoryType;
 import com.pepperwallet.app.repository.WalletItem;
 import com.pepperwallet.app.router.ManageWalletsRouter;
 import com.pepperwallet.app.router.MyAddressRouter;
+import com.pepperwallet.app.router.SendTokenRouter;
 import com.pepperwallet.app.router.TokenDetailRouter;
 import com.pepperwallet.app.service.AssetDefinitionService;
 import com.pepperwallet.app.service.RealmManager;
@@ -148,6 +150,17 @@ public class WalletViewModel extends BaseViewModel
         fetchTokens(wallet);
     }
 
+    public void showSend(Activity act, Wallet wallet, Token token)
+    {
+        if (token != null)
+        {
+            new SendTokenRouter().open(act, wallet.address, token.getSymbol(), token.tokenInfo.decimals,
+                    wallet, token, token.tokenInfo.chainId);
+        } else {
+            Toast.makeText(act, "Token is Empty", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void fetchTokens(Wallet wallet)
     {
         disposable =
@@ -215,6 +228,11 @@ public class WalletViewModel extends BaseViewModel
         token.tokenInfo.isEnabled = enabled;
     }
 
+    public void recieverAddress(Context context){
+        Log.d("defaultWallet",defaultWallet.getValue().address.toString());
+        myAddressRouter.open(context, defaultWallet.getValue());
+        Toast.makeText(context, defaultWallet.getValue().toString(), Toast.LENGTH_SHORT).show();
+    }
     public void showMyAddress(Context context)
     {
         // show bottomsheet dialog

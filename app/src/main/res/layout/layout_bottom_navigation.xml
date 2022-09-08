@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="?android:attr/actionBarSize"
     android:background="?colorSurface"
+    android:layout_marginBottom="@dimen/dp10"
     android:orientation="vertical">
 
     <View style="@style/Aw.Component.Separator" />
@@ -23,6 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/selector_bottom_navigation"
             app:drawableTint="@color/selector_bottom_navigation"
@@ -64,8 +66,8 @@
                 style="@style/Aw.Typography.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:gravity="center"
+                android:layout_centerVertical="true"
                 android:textColor="@color/selector_bottom_navigation"
                 app:drawableTint="@color/selector_bottom_navigation"
                 app:drawableTopCompat="@drawable/ic_tab_settings" />

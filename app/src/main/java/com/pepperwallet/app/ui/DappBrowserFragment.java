@@ -50,6 +50,7 @@ import android.webkit.WebViewClient;
 import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,6 +61,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -176,6 +178,7 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
     private static final long MAGIC_BUNDLE_VAL = 0xACED00D;
     private static final String BUNDLE_FILE = "awbrowse";
     private static volatile long forceChainChange = 0;
+
     /**
      * Below object is used to set Animation duration for expand/collapse and rotate
      */
@@ -218,6 +221,8 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
     private TextView balance;
     private TextView symbol;
     private View layoutNavigation;
+    private RelativeLayout Search_bar,SearchDialog;
+    private AppCompatEditText edit_search;
     // Handle resizing the browser view when the soft keyboard pops up and goes.
     // The issue this fixes is where you need to enter data at the bottom of the webpage,
     // and the keyboard hides the input field
@@ -338,6 +343,11 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
         initViewModel();
         initView(view);
         setupAddressBar();
+
+        edit_search.setOnClickListener(view1 -> {
+            Search_bar.setVisibility(View.VISIBLE);
+            SearchDialog.setVisibility(View.GONE);
+        });
 
         attachFragment(DAPP_BROWSER);
 
@@ -504,6 +514,14 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
 
     private void initView(@NotNull View view)
     {
+        Search_bar = view.findViewById(R.id.rr_mid);
+        SearchDialog = view.findViewById(R.id.dialog_rr);
+        edit_search = view.findViewById(R.id.edit_search);
+        SearchDialog.setVisibility(View.VISIBLE);
+        Search_bar.setVisibility(View.GONE);
+
+
+
         web3 = view.findViewById(R.id.web3view);
         urlTv = view.findViewById(R.id.url_tv);
         Bundle savedState = readBundleFromLocal();

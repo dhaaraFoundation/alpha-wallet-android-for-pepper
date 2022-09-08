@@ -984,4 +984,6 @@
     <string name="usd">USDC</string>
     <string name="ana">ANA</string>
     <string name="comingsoon">Coming Soon</string>
+    <string name="pepper_wallet">Pepper Wallet</string>
+    <string name="search">Search</string>
 </resources>

@@ -106,11 +106,15 @@ public class SendActivity extends BaseActivity implements AmountReadyCallback, S
         viewModel = new ViewModelProvider(this)
                 .get(SendViewModel.class);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+
         String contractAddress = getIntent().getStringExtra(C.EXTRA_CONTRACT_ADDRESS);
         long currentChain = getIntent().getLongExtra(C.EXTRA_NETWORKID, MAINNET_ID);
         wallet = getIntent().getParcelableExtra(WALLET);
         token = viewModel.getToken(currentChain, getIntent().getStringExtra(C.EXTRA_ADDRESS));
         QRResult result = getIntent().getParcelableExtra(C.EXTRA_AMOUNT);
+
 
         viewModel.transactionFinalised().observe(this, this::txWritten);
         viewModel.transactionError().observe(this, this::txError);
@@ -118,6 +122,7 @@ public class SendActivity extends BaseActivity implements AmountReadyCallback, S
         sendAddress = null;
         sendGasPrice = BigDecimal.ZERO;
         sendAmount = NEGATIVE;
+
 
         if (!checkTokenValidity(currentChain, contractAddress))
         {
@@ -132,6 +137,9 @@ public class SendActivity extends BaseActivity implements AmountReadyCallback, S
             //restore payment request
             validateEIP681Request(result, true);
         }
+        } else {
+            // handle case
+        }
     }
 
     @Override
@@ -145,7 +153,7 @@ public class SendActivity extends BaseActivity implements AmountReadyCallback, S
         {
             handleClick("", R.string.action_next);
         } else {
-            Toast.makeText(this, "Empty Data", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Empty Data", Toast.LENGTH_SHORT).show();
     }
     }
 
