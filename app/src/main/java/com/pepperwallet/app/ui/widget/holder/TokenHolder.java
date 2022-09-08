@@ -2,6 +2,7 @@ package com.pepperwallet.app.ui.widget.holder;
 
 import static com.pepperwallet.ethereum.EthereumNetworkBase.MAINNET_ID;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -9,6 +10,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,9 +63,14 @@ public class TokenHolder extends BinderViewHolder<TokenCardMeta> implements View
     private final RelativeLayout tokenLayout;
     private final MaterialCheckBox selectToken;
     private final ProgressBar tickerProgress;
+
     
     public Token token;
+    public static Token new_token;
     private TokensAdapterCallback tokensAdapterCallback;
+
+
+
 
     public TokenHolder(ViewGroup parent, AssetDefinitionService assetService, TokensService tSvs)
     {
@@ -87,6 +95,7 @@ public class TokenHolder extends BinderViewHolder<TokenCardMeta> implements View
         tokensService = tSvs;
     }
 
+
     @Override
     public void bind(@Nullable TokenCardMeta data, @NonNull Bundle addition)
     {
@@ -95,7 +104,11 @@ public class TokenHolder extends BinderViewHolder<TokenCardMeta> implements View
         if (data == null) { fillEmpty(); return; }
         try
         {
+
             token = tokensService.getToken(data.getChain(), data.getAddress());
+            Log.d("TokenHolder_token",token.toString());
+            new_token = token;
+//            Toast.makeText(getContext(), token.getAddress().toString(), Toast.LENGTH_SHORT).show();
             if (token == null)
             {
                 fillEmpty();
@@ -107,7 +120,6 @@ public class TokenHolder extends BinderViewHolder<TokenCardMeta> implements View
                 Token backupChain = tokensService.getToken(data.getChain(), "eth");
                 if (backupChain != null) token = backupChain;
             }
-
             tokenLayout.setVisibility(View.VISIBLE);
 //            tokenLayout.setBackgroundResource(R.drawable.background_marketplace_event);
             if (EthereumNetworkRepository.isPriorityToken(token)) extendedInfo.setVisibility(View.GONE);
@@ -172,6 +184,7 @@ public class TokenHolder extends BinderViewHolder<TokenCardMeta> implements View
             hideNetworkLabel();
         }
     }
+
 
     private void handleTicker(TokenTicker ticker)
     {
@@ -308,4 +321,10 @@ public class TokenHolder extends BinderViewHolder<TokenCardMeta> implements View
         selectToken.setSelected(data.isEnabled);
         selectToken.setOnCheckedChangeListener((buttonView, isChecked) -> data.isEnabled = isChecked);
     }
+
+    public static Token getToken(){
+        return new_token;
+    }
+
+
 }

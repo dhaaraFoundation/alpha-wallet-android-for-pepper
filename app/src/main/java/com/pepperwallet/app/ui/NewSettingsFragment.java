@@ -957,7 +957,7 @@ public class NewSettingsFragment extends BaseFragment
     private void onWalletSettingClicked()
     {
         Intent intent = new Intent(getActivity(), SettingWallet.class);
-        intent.putExtra("wallet_value",viewModel.defaultWallet().getValue().toString());
+        intent.putExtra("data",viewModel.defaultWallet().getValue());
         startActivity(intent);
     }
 

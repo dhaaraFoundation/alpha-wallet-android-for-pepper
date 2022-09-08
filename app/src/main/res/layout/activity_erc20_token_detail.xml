@@ -42,7 +42,8 @@
         android:id="@+id/layoutButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dp" />
 
     <RelativeLayout
         android:id="@+id/layout_eth_detail"

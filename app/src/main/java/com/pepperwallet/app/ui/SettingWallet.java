@@ -24,6 +24,7 @@ import com.pepperwallet.app.entity.Wallet;
 import com.pepperwallet.app.entity.WalletType;
 import com.pepperwallet.app.util.LocaleUtils;
 import com.pepperwallet.app.viewmodel.NewSettingsViewModel;
+import com.pepperwallet.app.viewmodel.SettingWalletViewmodel;
 import com.pepperwallet.app.widget.SettingsItemView;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -52,14 +53,14 @@ public class SettingWallet
     private LinearLayout supportSettingsLayout;
 
 
-    private NewSettingsViewModel viewModel;
+    private SettingWalletViewmodel viewModel;
     private SettingsItemView myAddressSetting;
     private SettingsItemView changeWalletSetting;
     private SettingsItemView backUpWalletSetting;
     private SettingsItemView walletConnectSetting;
     private SettingsItemView showSeedPhrase;
     private SettingsItemView nameThisWallet;
-    private Wallet wallet;
+    private Wallet wallet,new_wallet;
     private String default_wallet_value;
 
 
@@ -78,8 +79,8 @@ public class SettingWallet
         try {
 
             Intent intent = getIntent();
-            default_wallet_value = intent.getStringExtra("wallet_value");
-             Log.d("value",default_wallet_value);
+            new_wallet = getIntent().getExtras().getParcelable("data");
+             Log.d("value",new_wallet.address.toString());
             Log.d("default_value",default_wallet_value);
 
         } catch(Exception e) {
@@ -95,7 +96,7 @@ public class SettingWallet
     private void initViewModel()
     {
         viewModel = new ViewModelProvider(this)
-                .get(NewSettingsViewModel.class);
+                .get(SettingWalletViewmodel.class);
         viewModel.defaultWallet().observe(this, this::onDefaultWallet);
     }
 
@@ -176,7 +177,7 @@ public class SettingWallet
 
     private void onShowWalletAddressSettingClicked()
     {
-        viewModel.showMyAddress(this);
+        viewModel.showMyAddress(this,new_wallet);
     }
 
     private void onChangeWalletSettingClicked()
@@ -192,7 +193,7 @@ public class SettingWallet
     }
     private void onBackUpWalletSettingClicked()
     {
-        Wallet wallet = viewModel.defaultWallet().getValue();
+        Wallet wallet = new_wallet;
         if (wallet != null)
         {
             openBackupActivity(wallet);
@@ -216,11 +217,11 @@ public class SettingWallet
     {
         try
         {
-            Log.d("wallet_value", viewModel.defaultWallet().getValue().toString());
-            Wallet wallet = viewModel.defaultWallet().getValue();
+//            Log.d("wallet_value", viewModel.defaultWallet().getValue().toString());
+//            Wallet wallet = viewModel.defaultWallet().getValue();
             if (wallet != null)
             {
-                openShowSeedPhrase(wallet);
+                openShowSeedPhrase(new_wallet);
             }
         }catch (Exception e){
             e.printStackTrace();

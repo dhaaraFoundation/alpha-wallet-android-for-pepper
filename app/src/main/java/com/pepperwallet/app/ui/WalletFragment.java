@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -125,6 +126,7 @@ public class WalletFragment extends BaseFragment implements
 
     private Wallet wallet;
     private Token token;
+    private Token new_token;
 
     private ActivityResultLauncher<Intent> networkSettingsHandler = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result ->
@@ -175,23 +177,27 @@ public class WalletFragment extends BaseFragment implements
             }
         });
 
-        tvBuy.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
+        tvBuy.setOnClickListener(view12 -> {
+            try
             {
-                try
-                {
-                    Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
 
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
         });
         tvSend.setOnClickListener(view1 -> {
-                Intent intent = new Intent(getContext(), SendActivity.class);
-                startActivity(intent);
+            try
+            {
+
+                viewModel.showSend(getActivity(),viewModel.getWallet(),TokenHolder.getToken());
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+             });
+        tvRecieve.setOnClickListener(view1 -> {
+            viewModel.recieverAddress(getContext());
         });
 
 
@@ -212,14 +218,7 @@ public class WalletFragment extends BaseFragment implements
         return view;
     }
 
-    public void showSendToken(Activity act, Wallet wallet, Token token)
-    {
-        if (token != null)
-        {
-            new SendTokenRouter().open(act, wallet.address, token.getSymbol(), token.tokenInfo.decimals,
-                    wallet, token, token.tokenInfo.chainId);
-        }
-    }
+
 
     private void initList()
     {

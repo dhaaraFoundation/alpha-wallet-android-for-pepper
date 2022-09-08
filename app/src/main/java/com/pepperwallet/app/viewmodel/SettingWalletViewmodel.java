@@ -139,8 +139,8 @@ public class SettingWalletViewmodel extends BaseViewModel
         }
     }
 
-    public void showMyAddress(Context context) {
-        myAddressRouter.open(context, defaultWallet.getValue());
+    public void showMyAddress(Context context,Wallet wallet) {
+        myAddressRouter.open(context, wallet);
     }
 
     public void setIsDismissed(String walletAddr, boolean isDismissed)
