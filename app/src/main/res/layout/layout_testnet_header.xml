@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:textColor="@color/control_highlight"
-        android:text="@string/title_dialog_where_are_tokens" />
+        android:text="@string/title_dialog_where_are_tokens"
+        android:textColor="@color/control_highlight" />
 </RelativeLayout>

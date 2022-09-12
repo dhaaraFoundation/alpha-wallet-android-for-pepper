@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.LongSparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -322,11 +323,13 @@ public class AddTokenActivity extends BaseActivity implements AddressReadyCallba
         }
     }
 
-    private void onSave() {
+    public void onSave() {
+
         List<TokenCardMeta> selected = adapter.getSelected();
         List<Token> toSave = new ArrayList<>();
         for (TokenCardMeta tcm : selected)
         {
+            Log.d("token",tokenList.toString());
             Token matchingToken = tokenList.get(tcm.getChain());
             if (matchingToken != null) toSave.add(matchingToken);
         }
@@ -341,6 +344,8 @@ public class AddTokenActivity extends BaseActivity implements AddressReadyCallba
             finish();
         }
     }
+
+
 
     private void onNoContractFound(Boolean noContract)
     {

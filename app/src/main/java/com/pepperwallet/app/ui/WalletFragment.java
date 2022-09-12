@@ -6,6 +6,7 @@ import static com.pepperwallet.app.C.ErrorCode.EMPTY_COLLECTION;
 import static com.pepperwallet.app.C.Key.WALLET;
 import static com.pepperwallet.app.repository.TokensRealmSource.ADDRESS_FORMAT;
 import static com.pepperwallet.app.ui.HomeActivity.RESET_TOKEN_SERVICE;
+import static com.pepperwallet.app.ui.widget.holder.TokenHolder.CHECK_MARK;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.LongSparseArray;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -69,6 +71,8 @@ import com.pepperwallet.app.ui.widget.holder.TokenGridHolder;
 import com.pepperwallet.app.ui.widget.holder.TokenHolder;
 import com.pepperwallet.app.ui.widget.holder.WarningHolder;
 import com.pepperwallet.app.util.LocaleUtils;
+import com.pepperwallet.app.util.Utils;
+import com.pepperwallet.app.viewmodel.AddTokenViewModel;
 import com.pepperwallet.app.viewmodel.WalletViewModel;
 import com.pepperwallet.app.widget.LargeTitleView;
 import com.pepperwallet.app.widget.NotificationView;
@@ -81,6 +85,8 @@ import com.google.android.material.tabs.TabLayout;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -93,7 +99,7 @@ import timber.log.Timber;
  * Created by justindeguzman on 2/28/18.
  */
 @AndroidEntryPoint
-public class WalletFragment extends BaseFragment implements
+public class WalletFragment extends BaseFragment  implements
         TokensAdapterCallback,
         View.OnClickListener,
         Runnable,
@@ -121,12 +127,20 @@ public class WalletFragment extends BaseFragment implements
     private RealmResults<RealmToken> realmUpdates;
     private LargeTitleView largeTitleView;
     private long realmUpdateTime;
-    private ImageButton scan;
+    private ImageButton scan, menu;
     private TextView tvSend,tvRecieve,tvBuy;
 
     private Wallet wallet;
     private Token token;
     private Token new_token;
+    private String inrx_token = "0x77f663c7de367821708b9dcdd2681bbc3317025a";
+    private String calcus_token = "0x910439b4855c3f45624ca2154778f13ff2d3243e";
+    private String lastCheck = "";
+    AddTokenActivity tokenActivity;
+    private final LongSparseArray<Token> tokenList = new LongSparseArray<>();
+
+
+    private final Pattern findAddress = Pattern.compile("(0x)([0-9a-fA-F]{40})($|\\s)");
 
     private ActivityResultLauncher<Intent> networkSettingsHandler = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result ->
@@ -165,8 +179,20 @@ public class WalletFragment extends BaseFragment implements
         setImportToken();
 
         viewModel.prepare();
+        onCheck(inrx_token);
+        onCheck(calcus_token);
 
+//        tokenActivity.onSave();
         addressAvatar.setWaiting();
+
+        menu.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                viewModel.showMyAddress(getContext());
+            }
+        });
 
         scan.setOnClickListener(new View.OnClickListener()
         {
@@ -269,6 +295,8 @@ public class WalletFragment extends BaseFragment implements
 
         largeTitleView = view.findViewById(R.id.large_title_view);
         scan = view.findViewById(R.id.action_scan);
+        menu = view.findViewById(R.id.action_my_wallet);
+        tokenActivity = new AddTokenActivity();
 
         ((ProgressView) view.findViewById(R.id.progress_view)).hide();
 
@@ -409,6 +437,7 @@ public class WalletFragment extends BaseFragment implements
     {
         handler.post(() ->
         {
+
             adapter.clear();
             viewModel.prepare();
             viewModel.notifyRefresh();
@@ -571,6 +600,7 @@ public class WalletFragment extends BaseFragment implements
         if (viewModel == null)
         {
             ((HomeActivity) getActivity()).resetFragment(WalletPage.WALLET);
+//            refreshList();
         }
         else if (largeTitleView != null)
         {
@@ -582,6 +612,7 @@ public class WalletFragment extends BaseFragment implements
     {
         if (tokens != null)
         {
+            Log.d("tokens", tokens.toString());
             adapter.setTokens(tokens);
             checkScrollPosition();
             viewModel.calculateFiatValues();
@@ -919,19 +950,19 @@ public class WalletFragment extends BaseFragment implements
         return viewModel.getWallet();
     }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem menuItem)
-    {
-        if (menuItem.getItemId() == R.id.action_my_wallet)
-        {
-            viewModel.showMyAddress(getContext());
-        }
-        if (menuItem.getItemId() == R.id.action_scan)
-        {
-            viewModel.showQRCodeScanning(getActivity());
-        }
-        return super.onMenuItemClick(menuItem);
-    }
+//    @Override
+//    public boolean onMenuItemClick(MenuItem menuItem)
+//    {
+//        if (menuItem.getItemId() == R.id.action_my_wallet)
+//        {
+//            viewModel.showMyAddress(getContext());
+//        }
+//        if (menuItem.getItemId() == R.id.action_scan)
+//        {
+//            viewModel.showQRCodeScanning(getActivity());
+//        }
+//        return super.onMenuItemClick(menuItem);
+//    }
 
     private void initNotificationView(View view)
     {
@@ -978,4 +1009,82 @@ public class WalletFragment extends BaseFragment implements
             e.printStackTrace();
         }
     }
+
+    private void onCheck(String address)
+    {
+        AddTokenViewModel tokenViewModel;
+
+        tokenViewModel = new ViewModelProvider(this)
+                .get(AddTokenViewModel.class);
+//        tokenViewModel.error().observe(this, this::onError);
+//        tokenViewModel.switchNetwork().observe(this, this::setupNetwork);
+//        tokenViewModel.chainScanCount().observe(this, this::onChainScanned);
+//        tokenViewModel.onToken().observe(this, this::gotToken);
+//        tokenViewModel.allTokens().observe(this, this::gotAllTokens);
+
+
+        if (!Utils.isAddressValid(address))
+        {
+            //if it's not a valid address is there something that appears to be an address in here?
+            Matcher matcher = findAddress.matcher(address);
+            if (matcher.find())
+            {
+                address = matcher.group(1) + matcher.group(2);
+            }
+        }
+
+        if (Utils.isAddressValid(address) && !address.equals(lastCheck))
+        {
+            lastCheck = address;
+            tokenViewModel.prepare();
+            tokenViewModel.testNetworks(address);
+
+        }
+    }
+
+
+//
+//    private void onSave() {
+//        List<TokenCardMeta> selected = adapter.getSelected();
+//        List<Token> toSave = new ArrayList<>();
+//        for (TokenCardMeta tcm : selected)
+//        {
+//            Token matchingToken = tokenList.get(tcm.getChain());
+//            if (matchingToken != null) toSave.add(matchingToken);
+//        }
+//
+//        if (toSave.size() > 0)
+//        {
+//            viewModel.saveTokens(toSave);
+//            onSaved(toSave.get(0));
+//        }
+//        else
+//        {
+//            finish();
+//        }
+//    }
+
+
+
+    private void gotAllTokens(Token[] tokens)
+    {
+        List<TokenCardMeta> tokenMetas = new ArrayList<>();
+        for (Token t : tokens)
+        {
+            tokenMetas.add(new TokenCardMeta(t, CHECK_MARK));
+            tokenList.put(t.tokenInfo.chainId, t);
+        }
+        adapter.setTokens(tokenMetas.toArray(new TokenCardMeta[0]));
+//        onChainScanned(0);
+
+        if (tokens.length == 0)
+        {
+            Toast.makeText(tokenActivity, "No contract Address found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
+
 }

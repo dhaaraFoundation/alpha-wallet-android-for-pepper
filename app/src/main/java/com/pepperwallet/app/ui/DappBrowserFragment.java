@@ -32,6 +32,7 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -344,10 +345,19 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
         initView(view);
         setupAddressBar();
 
-        edit_search.setOnClickListener(view1 -> {
-            Search_bar.setVisibility(View.VISIBLE);
-            SearchDialog.setVisibility(View.GONE);
+        edit_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    sendMessage();
+                    handled = true;
+                }
+                return handled;
+            }
         });
+
+
 
         attachFragment(DAPP_BROWSER);
 
@@ -359,6 +369,22 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
 
         return view;
     }
+
+   private void sendMessage(){
+        try
+        {
+            String search_txt =  edit_search.getText().toString();
+            if(search_txt != null)
+            {
+                urlTv.setText(search_txt);
+                Search_bar.setVisibility(View.VISIBLE);
+                SearchDialog.setVisibility(View.GONE);
+                setupAddressBar();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+   }
 
     private void attachFragment(String tag)
     {
@@ -633,6 +659,13 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
                 this::onItemClick
         );
         urlTv.setAdapter(null);
+
+        {
+            String urlText = urlTv.getText().toString();
+            loadUrl(urlText);
+            detachFragments();
+            cancelSearchSession();
+        }
 
         urlTv.setOnEditorActionListener((v, actionId, event) -> {
             boolean handled = false;

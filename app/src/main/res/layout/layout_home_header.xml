@@ -47,28 +47,30 @@
     </LinearLayout>
 
         <ImageButton
+            android:id="@+id/action_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/action_scan"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/dp10"
-            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:src="@drawable/ic_camera_scan"/>
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_toLeftOf="@+id/action_my_wallet"
+            android:background="@color/bottom_bg"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/ic_camera_scan" />
+
+        <ImageButton
+            android:id="@+id/action_my_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/dp10"
+            android:background="@color/bottom_bg"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/ic_menu"
+            android:visibility="visible" />
 
     </RelativeLayout>
-
-
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/toolbar_title"-->
-<!--        style="@style/Aw.Typography.Toolbar"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_gravity="center"-->
-<!--        tools:text="Activity Title" />-->
 
 </com.google.android.material.appbar.MaterialToolbar>
