@@ -677,31 +677,36 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
 
     private void checkWarnings()
     {
-        if (updatePrompt)
+        try
         {
-            hideDialog();
-            updatePrompt = false;
-            int warns = viewModel.getUpdateWarnings() + 1;
-            if (warns < 3)
+            if (updatePrompt)
             {
-                AWalletConfirmationDialog cDialog = new AWalletConfirmationDialog(this);
-                cDialog.setTitle(R.string.alphawallet_update);
-                cDialog.setCancelable(true);
-                cDialog.setSmallText("Using an old version of Alphawallet. Please update from the Play Store or Alphawallet website.");
-                cDialog.setPrimaryButtonText(R.string.ok);
-                cDialog.setPrimaryButtonListener(v ->
+                hideDialog();
+                updatePrompt = false;
+                int warns = viewModel.getUpdateWarnings() + 1;
+                if (warns < 3)
                 {
-                    cDialog.dismiss();
-                });
-                dialog = cDialog;
-                dialog.show();
-            }
-            else if (warns > 10)
-            {
-                warns = 0;
-            }
+                    AWalletConfirmationDialog cDialog = new AWalletConfirmationDialog(this);
+                    cDialog.setTitle(R.string.alphawallet_update);
+                    cDialog.setCancelable(true);
+                    cDialog.setSmallText("Using an old version of Alphawallet. Please update from the Play Store or Alphawallet website.");
+                    cDialog.setPrimaryButtonText(R.string.ok);
+                    cDialog.setPrimaryButtonListener(v ->
+                    {
+                        cDialog.dismiss();
+                    });
+                    dialog = cDialog;
+                    dialog.show();
+                }
+                else if (warns > 10)
+                {
+                    warns = 0;
+                }
 
-            viewModel.setUpdateWarningCount(warns);
+                viewModel.setUpdateWarningCount(warns);
+            }
+        } catch (Exception e){
+            e.printStackTrace( );
         }
     }
 
@@ -880,6 +885,7 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
 
     private BaseFragment getFragment(WalletPage page)
     {
+
         //build map, return correct fragment.
         if (getSupportFragmentManager().getFragments().size() < page.ordinal())
         {
@@ -896,7 +902,9 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
                     return (BaseFragment) settingsFragment;
             }
         }
-        else return (BaseFragment) getSupportFragmentManager().getFragments().get(page.ordinal());
+        else
+            return (BaseFragment) walletFragment;
+//            return (BaseFragment) getSupportFragmentManager().getFragments().get(page.ordinal());
     }
 
     @Override

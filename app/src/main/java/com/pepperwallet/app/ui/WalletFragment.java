@@ -498,6 +498,7 @@ public class WalletFragment extends BaseFragment  implements
             {
 //                tab.view.setBackground(getResources().getDrawable(R.color.bottom_selected_bg));
 
+
                 TokenFilter newFilter = setLinearLayoutManager(tab.getPosition());
                 adapter.setFilterType(newFilter);
                 switch (newFilter)

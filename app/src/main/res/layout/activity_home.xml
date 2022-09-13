@@ -17,9 +17,6 @@
         <com.pepperwallet.app.widget.AWalletBottomNavigationView
             android:id="@+id/nav"
             android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp10"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom" />
