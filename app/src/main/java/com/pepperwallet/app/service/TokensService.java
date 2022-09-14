@@ -173,7 +173,7 @@ public class TokensService
     public Token getToken(long chainId, String addr)
     {
         if (TextUtils.isEmpty(currentAddress) || TextUtils.isEmpty(addr)) return null;
-        else return tokenRepository.fetchToken(chainId, currentAddress, addr.toLowerCase());
+        else return tokenRepository.fetchToken(chainId, currentAddress, addr);
     }
 
     public void storeToken(Token token)
@@ -211,7 +211,7 @@ public class TokensService
     {
         if (newWalletAddr != null && (currentAddress == null || !currentAddress.equalsIgnoreCase(newWalletAddr)))
         {
-            currentAddress = newWalletAddr.toLowerCase();
+            currentAddress = newWalletAddr;
             stopUpdateCycle();
             addLockedTokens();
             if (openseaService != null) openseaService.resetOffsetRead(networkFilter);

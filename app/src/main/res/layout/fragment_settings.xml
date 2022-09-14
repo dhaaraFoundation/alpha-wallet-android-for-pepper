@@ -67,42 +67,36 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/cozy_20"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp30"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/logo"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="@dimen/dp15"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/ic_logo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_toRightOf="@id/logo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="30dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/dp15"
-                    android:text="@string/pepper_wallet" />
+                    android:layout_alignParentStart="true"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/ic_pepper_final" />
+
+
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/layout_version"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_marginTop="-30dp"
                 android:paddingLeft="@dimen/standard_16"
                 android:paddingRight="@dimen/standard_16">
 
                 <TextView
+                    android:id="@+id/version"
                     style="@style/Aw.Typography.Label"
                     android:layout_width="wrap_content"
-                    android:id="@+id/version"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/version" />

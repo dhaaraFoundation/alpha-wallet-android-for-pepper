@@ -134,7 +134,7 @@ public class WalletFragment extends BaseFragment  implements
     private Token token;
     private Token new_token;
     private String inrx_token = "0x77f663c7de367821708b9dcdd2681bbc3317025a";
-    private String calcus_token = "0x910439b4855c3f45624ca2154778f13ff2d3243e";
+    private String calcus_token = "0x910439b4855c3F45624cA2154778F13Ff2D3243E";
     private String lastCheck = "";
     AddTokenActivity tokenActivity;
     private final LongSparseArray<Token> tokenList = new LongSparseArray<>();
@@ -179,8 +179,8 @@ public class WalletFragment extends BaseFragment  implements
         setImportToken();
 
         viewModel.prepare();
-        onCheck(inrx_token);
         onCheck(calcus_token);
+        onCheck(inrx_token);
 
 //        tokenActivity.onSave();
         addressAvatar.setWaiting();
@@ -1013,6 +1013,8 @@ public class WalletFragment extends BaseFragment  implements
 
     private void onCheck(String address)
     {
+
+        Log.d("address",address);
         AddTokenViewModel tokenViewModel;
 
         tokenViewModel = new ViewModelProvider(this)
@@ -1026,16 +1028,21 @@ public class WalletFragment extends BaseFragment  implements
 
         if (!Utils.isAddressValid(address))
         {
+
+            Log.d("address",address);
             //if it's not a valid address is there something that appears to be an address in here?
             Matcher matcher = findAddress.matcher(address);
             if (matcher.find())
             {
                 address = matcher.group(1) + matcher.group(2);
+                Log.d("address",address);
             }
         }
 
         if (Utils.isAddressValid(address) && !address.equals(lastCheck))
         {
+
+            Log.d("address",address);
             lastCheck = address;
             tokenViewModel.prepare();
             tokenViewModel.testNetworks(address);

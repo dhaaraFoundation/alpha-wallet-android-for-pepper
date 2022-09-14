@@ -448,7 +448,7 @@ public class TransactionsService
             if (txData.length != 3) return;
             final String txHash = txData[0];
             long chainId = Long.parseLong(txData[1]);
-            final String wallet = txData[2].toLowerCase();
+            final String wallet = txData[2];
 
             Timber.d("Transaction Queue: fetch tx: %s", requiredTransactions.size());
             transactionResolve = doTransactionFetch(txHash, chainId)
@@ -629,7 +629,7 @@ public class TransactionsService
         {
             String[] txData = txHashData.split("-");
             if (txData.length != 3) continue;
-            Transaction check = transactionsCache.fetchTransaction(new Wallet(txData[2].toLowerCase()), txData[0]);
+            Transaction check = transactionsCache.fetchTransaction(new Wallet(txData[2]), txData[0]);
             if (check == null)
             {
                 break;

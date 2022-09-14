@@ -242,6 +242,8 @@ public class AddTokenViewModel extends BaseViewModel {
 
     public void testNetworks(String address)
     {
+
+        Log.d("address",address);
         foundNetwork = false;
         discoveredTokenList.clear();
         networkCount = ethereumNetworkRepository.getAvailableNetworkList().length;
