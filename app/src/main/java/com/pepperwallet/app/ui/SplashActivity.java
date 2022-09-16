@@ -12,6 +12,7 @@ import android.view.View;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import com.pepperwallet.app.C;
 import com.pepperwallet.app.R;
 import com.pepperwallet.app.entity.CreateWalletCallbackInterface;
 import com.pepperwallet.app.entity.CustomViewSettings;
@@ -20,6 +21,7 @@ import com.pepperwallet.app.entity.Wallet;
 import com.pepperwallet.app.router.HomeRouter;
 import com.pepperwallet.app.router.ImportWalletRouter;
 import com.pepperwallet.app.service.KeyService;
+import com.pepperwallet.app.util.PreferenceManager;
 import com.pepperwallet.app.util.RootUtil;
 import com.pepperwallet.app.viewmodel.SplashViewModel;
 import com.pepperwallet.app.widget.AWalletAlertDialog;
@@ -57,6 +59,9 @@ public class SplashActivity extends BaseActivity implements CreateWalletCallback
         splashViewModel.fetchWallets();
 
         checkRoot();
+//        PreferenceManager.setBoolValue(C.ONBOARDING,true);
+//            new HomeRouter().open(this);
+
     }
 
     protected Activity getThisActivity()
@@ -173,8 +178,15 @@ public class SplashActivity extends BaseActivity implements CreateWalletCallback
     @Override
     public void run()
     {
-        new HomeRouter().open(this, true);
-        finish();
+        PreferenceManager.init(this);
+        if(PreferenceManager.getBoolValue(C.ONBOARDING)){
+            new HomeRouter().open(this,true);
+        } else
+        {
+            PreferenceManager.setBoolValue(C.ONBOARDING,true);
+            new HomeRouter().open(this, true, this);
+            finish();
+        }
     }
 
     private void checkRoot()

@@ -19,6 +19,7 @@
     <string name="error_deleting_account">Error deleting wallet</string>
     <string name="do_manage_make_backup">Did you manage to make a backup?</string>
     <string name="yes_continue">Yes, continue</string>
+    <string name="continue_">Continue</string>
     <string name="no_repeat">No, repeat</string>
     <string name="transfer">Transfer %s</string>
     <string name="action_buy">Buy %s</string>
@@ -986,4 +987,14 @@
     <string name="comingsoon">Coming Soon</string>
     <string name="pepper_wallet">Pepper Wallet</string>
     <string name="search">Search</string>
+    <string name="skip_login">Skip Login</string>
+
+    <string name="tutorial_title_1">Your recovery phrases is a backup key your wallet.</string>
+    <string name="tutorial_title_2">Write it down!</string>
+    <string name="tutorial_title_3">Never share your recovery pharse to anyone!</string>
+    <string name="tutorial_desc_1">You\'ll be able  to log in to your wallet with a passcode, but you will need your recovery phrase to access it.                              </string>
+    <string name="tutorial_desc_2">Its highly recommended to write down your recovery pharse and store it in a safe place so you don\'t risk losing your funds.</string>
+    <string name="tutorial_desc_3">Anyone who has it can access your funds from anywhere.</string>
+    <string name="onboarding">OnBoarding</string>
+    <string name="skip">Skip</string>
 </resources>

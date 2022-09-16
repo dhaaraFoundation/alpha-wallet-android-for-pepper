@@ -86,6 +86,7 @@ public class TokenIcon extends ConstraintLayout
         currentStatus = StatusType.NONE;
         chainIcon = findViewById(R.id.status_chain_icon);
         chainIconBackground = findViewById(R.id.chain_icon_background);
+        chainIcon.setVisibility(GONE);
 
         bindViews();
     }
@@ -242,7 +243,7 @@ public class TokenIcon extends ConstraintLayout
 
         else
         {
-            loadFromAltRepo();
+//            loadFromAltRepo();
         }
     }
 

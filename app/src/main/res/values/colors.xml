@@ -74,4 +74,6 @@
     <color name="surface_search">@color/white</color>
     <color name="tab_background_selected">#E6F8F0</color>
     <color name="tab_background_unselected">#E6F8F0</color>// change this color acc. to unselected item
+
+    <color name="light_green_1">#D7F5E7</color>
 </resources>

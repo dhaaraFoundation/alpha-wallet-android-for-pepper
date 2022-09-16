@@ -40,6 +40,9 @@
             android:name="com.pepperwallet.app.ui.SettingWallet"
             android:exported="false" />
 
+        <activity android:name=".ui.Tutorial"
+            android:exported="false"
+            android:label="@string/onboarding"/>
         <activity
             android:name="com.pepperwallet.app.ui.HomeActivity"
             android:exported="true"

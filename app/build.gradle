@@ -322,6 +322,12 @@ dependencies {
     analyticsImplementation 'com.google.firebase:firebase-analytics:20.1.2'
     analyticsImplementation 'com.mixpanel.android:mixpanel-android:5.8.4'
     analyticsImplementation 'com.google.firebase:firebase-crashlytics:18.2.9'
+
+// butterknife
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    // passcode
+    implementation 'com.hanks:passcodeview:0.1.2'
 }
 
 // WARNING WARNING WARNING

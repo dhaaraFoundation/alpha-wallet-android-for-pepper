@@ -170,12 +170,12 @@
         android:layout_height="0dp"
         android:contentDescription="@string/empty"
         android:src="@drawable/grey_circle"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/guidelineBottom2"
         app:layout_constraintEnd_toStartOf="@id/guidelineLeftMid"
         app:layout_constraintStart_toEndOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="@id/guidelineBottomMid"
-        tools:visibility="gone" />
+        />
 
     <ImageView
         android:id="@+id/status_chain_icon"
