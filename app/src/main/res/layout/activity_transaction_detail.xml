@@ -80,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/mini_4"
-                        android:text="☹"
+                        android:text="@string/emoji_1"
                         android:visibility="gone"
                         tools:visibility="visible" />
 
@@ -267,7 +267,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/mini_4"
-                            android:text="Gwei" />
+                            android:text="@string/gwei" />
 
                     </LinearLayout>
 
@@ -348,7 +348,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/mini_4"
-                            android:text="Gwei" />
+                            android:text="@string/gwei" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -393,7 +393,7 @@
                             android:layout_marginStart="@dimen/dp5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Gwei" />
+                            android:text="@string/gwei" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -425,7 +425,7 @@
                             android:layout_marginStart="@dimen/dp5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Gwei" />
+                            android:text="@string/gwei" />
                     </LinearLayout>
 
                 </LinearLayout>

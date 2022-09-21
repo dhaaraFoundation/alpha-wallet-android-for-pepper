@@ -92,7 +92,7 @@
         android:contentDescription="@string/empty"
         android:src="@drawable/grey_circle"
         app:tint="?colorSurfaceQuinary"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/guidelineInnerBottom"
         app:layout_constraintEnd_toStartOf="@id/guidelineInnerRight"
         app:layout_constraintStart_toEndOf="@id/guidelineInnerLeft"

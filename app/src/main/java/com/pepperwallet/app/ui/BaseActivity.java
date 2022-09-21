@@ -1,5 +1,6 @@
 package com.pepperwallet.app.ui;
 
+import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,12 +37,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+//        gotoPasscode();
+    }
+
+
+
     protected void setSubtitle(String subtitle) {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setSubtitle(subtitle);
         }
     }
+
+
 
     protected void enableDisplayHomeAsUp() {
         ActionBar actionBar = getSupportActionBar();
@@ -102,5 +114,15 @@ public abstract class BaseActivity extends AppCompatActivity {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             BaseViewModel.onPushToast(null);
         }
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+    }
+
+    public void  gotoPasscode(String from){
+        startActivity(new Intent(this,Passcode.class).putExtra("from",from));
     }
 }

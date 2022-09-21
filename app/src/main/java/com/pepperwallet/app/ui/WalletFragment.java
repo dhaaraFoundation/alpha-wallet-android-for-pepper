@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -127,7 +128,7 @@ public class WalletFragment extends BaseFragment  implements
     private RealmResults<RealmToken> realmUpdates;
     private LargeTitleView largeTitleView;
     private long realmUpdateTime;
-    private ImageButton scan, menu;
+    private ImageView scan, menu;
     private TextView tvSend,tvRecieve,tvBuy;
 
     private Wallet wallet;

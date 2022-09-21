@@ -34,19 +34,19 @@
     <!-- ?colorOnError -->
     <color name="error_inverse">@color/white</color>
     <!-- ?android:colorBackground -->
-    <color name="background">@color/white</color>
+    <color name="background">@color/light_green_1</color>
     <!-- ?colorOnBackground -->
     <color name="background_inverse">@color/black</color>
     <!-- ?colorSurface -->
-    <color name="surface">@color/white</color>
+    <color name="surface">@color/light_green_1</color>
     <!-- ?colorSurfaceSecondary -->
-    <color name="surface_secondary">@color/alabaster</color>
+    <color name="surface_secondary">@color/bottom_bg</color>
     <!-- ?colorSurfaceTertiary -->
-    <color name="surface_tertiary">@color/concrete</color>
+    <color name="surface_tertiary">@color/bottom_bg</color>
     <!-- ?colorSurfaceQuaternary -->
-    <color name="surface_quaternary">@color/mercury</color>
+    <color name="surface_quaternary">@color/bottom_bg</color>
     <!-- ?colorSurfaceQuinary -->
-    <color name="surface_quinary">@color/mercury</color>
+    <color name="surface_quinary">@color/bottom_bg</color>
     <!-- ?colorOnSurface -->
     <color name="surface_inverse">@color/black</color>
     <!-- ?colorSurfaceDark -->

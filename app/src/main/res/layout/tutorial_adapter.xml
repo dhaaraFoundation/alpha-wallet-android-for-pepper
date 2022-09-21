@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_bold"
         android:gravity="center"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp20"
         android:text="@string/tutorial_title_1"
         android:textColor="@color/black"
         android:textSize="24sp"

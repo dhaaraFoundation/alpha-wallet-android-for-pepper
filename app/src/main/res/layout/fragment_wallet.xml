@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
-    android:background="@color/bottom_bg"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bottom_bg">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -80,7 +80,7 @@
             android:layout_marginRight="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
             app:tabIndicator="@null"
-            app:tabSelectedTextColor="@color/black"
+            app:tabSelectedTextColor="@color/background_inverse"
             app:tabIndicatorHeight="0dp"
             android:clickable="false"
             app:tabTextColor="@color/bottom_selected_bg"
@@ -111,7 +111,8 @@
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/home_bottom_bg" />
+            android:background="@drawable/home_bottom_bg"
+            tools:listitem="@layout/item_token"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -129,5 +130,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?actionBarSize"
         tools:visibility="gone" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -53,6 +53,7 @@
                 android:paddingHorizontal="@dimen/standard_16"
                 android:visibility="gone"
                 tools:text="Primary"
+                android:textColor="@color/background_inverse"
                 tools:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton

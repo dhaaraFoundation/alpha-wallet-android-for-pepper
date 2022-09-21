@@ -24,7 +24,7 @@
         android:layout_above="@id/skip"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="@dimen/dp20"
-        android:layout_marginBottom="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp15"
         android:background="@color/light_green_1"
         app:tabBackground="@drawable/tab_selector"
         app:tabGravity="center"

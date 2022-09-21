@@ -236,6 +236,8 @@ public abstract class C {
     public static final String LINKEDIN_PACKAGE_NAME = "com.linkedin.android";
     public static final String REDDIT_PACKAGE_NAME = "com.reddit.frontpage";
     public static final String INSTAGRAM_PACKAGE_NAME = "com.instagram.android";
+    public static final String LOCK = "lock";
+    public static final String PASSCODE_NUMBER = "passcodeNumber";
 
     public interface ErrorCode {
         int UNKNOWN = 1;
@@ -303,6 +305,7 @@ public abstract class C {
     public static final String AN_USE_ONRAMP = "Use OnRamp";
     public static final String APP_NAME = "PACKAGE_NAME";
     public static final String ONBOARDING ="onBoarding";
+    public static final String PASSCODE ="passcode";
 
     public static final String ALPHAWALLET_LOGO_URI = "https://alphawallet.com/wp-content/themes/alphawallet/img/alphawallet-logo.svg";
 

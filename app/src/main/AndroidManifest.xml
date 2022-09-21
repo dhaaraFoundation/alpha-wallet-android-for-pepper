@@ -34,17 +34,20 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:name, android:theme, android:allowBackup">
         <activity
-            android:name="com.pepperwallet.app.ui.SettingGeneral"
+            android:name=".ui.Passcode"
             android:exported="false" />
         <activity
-            android:name="com.pepperwallet.app.ui.SettingWallet"
+            android:name=".ui.SettingGeneral"
             android:exported="false" />
-
-        <activity android:name=".ui.Tutorial"
+        <activity
+            android:name=".ui.SettingWallet"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Tutorial"
             android:exported="false"
-            android:label="@string/onboarding"/>
+            android:label="@string/onboarding" />
         <activity
-            android:name="com.pepperwallet.app.ui.HomeActivity"
+            android:name=".ui.HomeActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar.Splash"
@@ -96,7 +99,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.pepperwallet.app.ui.ApiV1Activity"
+            android:name=".ui.ApiV1Activity"
             android:label="API V1 Activity"
             android:theme="@style/AppTheme.NoActionBar.Transparent" />
 
@@ -111,10 +114,10 @@
         </provider>
 
         <activity
-            android:name="com.pepperwallet.app.ui.WalletsActivity"
+            android:name=".ui.WalletsActivity"
             android:label="@string/title_account_list" />
         <activity
-            android:name="com.pepperwallet.app.ui.SplashActivity"
+            android:name=".ui.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar.Splash" />
 
         <service
@@ -122,157 +125,157 @@
             android:enabled="true" />
 
         <activity
-            android:name="com.pepperwallet.app.ui.NameThisWalletActivity"
+            android:name=".ui.NameThisWalletActivity"
             android:label="@string/name_this_wallet"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.pepperwallet.app.ui.ImportWalletActivity"
+            android:name=".ui.ImportWalletActivity"
             android:label="@string/title_import"
             android:screenOrientation="sensor"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
         <activity
-            android:name="com.pepperwallet.app.ui.TransactionDetailActivity"
+            android:name=".ui.TransactionDetailActivity"
             android:label="@string/title_transaction_details" />
         <activity
-            android:name="com.pepperwallet.app.ui.MyAddressActivity"
+            android:name=".ui.MyAddressActivity"
             android:label="@string/title_my_address" />
         <activity
-            android:name="com.pepperwallet.app.ui.SendActivity"
+            android:name=".ui.SendActivity"
             android:label="@string/title_activity_send"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.pepperwallet.app.ui.AddTokenActivity"
+            android:name=".ui.AddTokenActivity"
             android:label="@string/title_add_token" />
         <activity
-            android:name="com.pepperwallet.app.ui.AssetDisplayActivity"
+            android:name=".ui.AssetDisplayActivity"
             android:label="@string/title_use_token" />
         <activity
-            android:name="com.pepperwallet.app.ui.RedeemSignatureDisplayActivity"
+            android:name=".ui.RedeemSignatureDisplayActivity"
             android:label="@string/title_use_token" />
         <activity
-            android:name="com.pepperwallet.app.ui.GasSettingsActivity"
+            android:name=".ui.GasSettingsActivity"
             android:label="@string/title_send_settings" />
         <activity
-            android:name="com.pepperwallet.app.ui.SellDetailActivity"
+            android:name=".ui.SellDetailActivity"
             android:label="@string/action_sell"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.pepperwallet.app.ui.RedeemAssetSelectActivity"
+            android:name=".ui.RedeemAssetSelectActivity"
             android:label="@string/title_redeem" />
         <activity
-            android:name="com.pepperwallet.app.ui.ImportTokenActivity"
+            android:name=".ui.ImportTokenActivity"
             android:label="@string/title_import_token" />
         <activity
-            android:name="com.pepperwallet.app.ui.TransferTicketDetailActivity"
+            android:name=".ui.TransferTicketDetailActivity"
             android:label="@string/label_transfer_ticket_detail" />
         <activity
-            android:name="com.pepperwallet.app.ui.TokenDetailActivity"
+            android:name=".ui.TokenDetailActivity"
             android:label="@string/token_details" />
         <activity
-            android:name="com.pepperwallet.app.ui.Erc20DetailActivity"
+            android:name=".ui.Erc20DetailActivity"
             android:label="@string/erc20_details" />
         <activity
-            android:name="com.pepperwallet.app.ui.TokenFunctionActivity"
+            android:name=".ui.TokenFunctionActivity"
             android:label="@string/token_function" />
         <activity
-            android:name="com.pepperwallet.app.ui.FunctionActivity"
+            android:name=".ui.FunctionActivity"
             android:label="@string/token_function" />
         <activity
-            android:name="com.pepperwallet.app.ui.WalletActionsActivity"
+            android:name=".ui.WalletActionsActivity"
             android:label="Wallet Actions" />
         <activity
-            android:name="com.pepperwallet.app.ui.AddEditDappActivity"
+            android:name=".ui.AddEditDappActivity"
             android:label="Add DApp" />
         <activity
-            android:name="com.pepperwallet.app.ui.SelectNetworkActivity"
+            android:name=".ui.SelectNetworkActivity"
             android:label="Select DApp Browser Network" />
         <activity
-            android:name="com.pepperwallet.app.ui.SelectNetworkFilterActivity"
+            android:name=".ui.SelectNetworkFilterActivity"
             android:label="Select Network Filters" />
         <activity
-            android:name="com.pepperwallet.app.ui.TokenManagementActivity"
+            android:name=".ui.TokenManagementActivity"
             android:label="Manage Tokens" />
         <activity
-            android:name="com.pepperwallet.app.ui.SelectLocaleActivity"
+            android:name=".ui.SelectLocaleActivity"
             android:label="Select Language" />
         <activity
-            android:name="com.pepperwallet.app.ui.SelectCurrencyActivity"
+            android:name=".ui.SelectCurrencyActivity"
             android:label="Select Currency" />
         <activity
-            android:name="com.pepperwallet.app.ui.ScammerWarningActivity"
+            android:name=".ui.ScammerWarningActivity"
             android:label="Scammer Warning"
             android:noHistory="true" />
         <activity
-            android:name="com.pepperwallet.app.ui.BackupKeyActivity"
+            android:name=".ui.BackupKeyActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name="com.pepperwallet.app.ui.SupportSettingsActivity"
+            android:name=".ui.SupportSettingsActivity"
             android:label="Support Settings" />
         <activity
-            android:name="com.pepperwallet.app.ui.AdvancedSettingsActivity"
+            android:name=".ui.AdvancedSettingsActivity"
             android:label="Advanced Settings" />
         <activity
-            android:name="com.pepperwallet.app.ui.StaticViewer"
+            android:name=".ui.StaticViewer"
             android:label="View Text" />
         <activity
-            android:name="com.pepperwallet.app.ui.TokenScriptManagementActivity"
+            android:name=".ui.TokenScriptManagementActivity"
             android:label="@string/tokenscript_management" />
         <activity
-            android:name="com.pepperwallet.app.ui.TokenActivity"
+            android:name=".ui.TokenActivity"
             android:label="@string/activity_label" />
         <activity
-            android:name="com.pepperwallet.app.ui.WalletConnectActivity"
+            android:name=".ui.WalletConnectActivity"
             android:label="WalletConnect"
             android:launchMode="singleTop" />
         <activity
-            android:name="com.pepperwallet.app.ui.BackupFlowActivity"
+            android:name=".ui.BackupFlowActivity"
             android:label="WalletConnect" />
         <activity
-            android:name="com.pepperwallet.app.ui.SignDetailActivity"
+            android:name=".ui.SignDetailActivity"
             android:label="Sign Details" />
         <activity
-            android:name="com.pepperwallet.app.ui.WalletConnectSessionActivity"
+            android:name=".ui.WalletConnectSessionActivity"
             android:label="WalletConnect Sessions" />
         <activity
-            android:name="com.pepperwallet.app.ui.TransactionSuccessActivity"
+            android:name=".ui.TransactionSuccessActivity"
             android:label="Transaction Success" />
         <activity
-            android:name="com.pepperwallet.app.ui.SetPriceAlertActivity"
+            android:name=".ui.SetPriceAlertActivity"
             android:label="Set New Alert"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.pepperwallet.app.ui.AddCustomRPCNetworkActivity"
+            android:name=".ui.AddCustomRPCNetworkActivity"
             android:label="@string/title_activity_add_custom_rpcnetwork" />
         <activity
-            android:name="com.pepperwallet.app.ui.NFTActivity"
+            android:name=".ui.NFTActivity"
             android:label="ERC721 Master Activity" />
         <activity
-            android:name="com.pepperwallet.app.ui.Erc1155AssetSelectActivity"
+            android:name=".ui.Erc1155AssetSelectActivity"
             android:label="ERC1155 Asset Selection" />
         <activity
-            android:name="com.pepperwallet.app.ui.NFTAssetDetailActivity"
+            android:name=".ui.NFTAssetDetailActivity"
             android:label="ERC1155 Asset Details" />
         <activity
-            android:name="com.pepperwallet.app.ui.Erc1155AssetListActivity"
+            android:name=".ui.Erc1155AssetListActivity"
             android:label="ERC1155 Asset Details" />
         <activity
-            android:name="com.pepperwallet.app.ui.TransferNFTActivity"
+            android:name=".ui.TransferNFTActivity"
             android:label="NFT Transfer" />
         <activity
-            android:name="com.pepperwallet.app.ui.SelectThemeActivity"
+            android:name=".ui.SelectThemeActivity"
             android:label="Select Mode" />
         <activity
-            android:name="com.pepperwallet.app.ui.SearchActivity"
+            android:name=".ui.SearchActivity"
             android:label="Search Tokens" />
         <activity
-            android:name="com.pepperwallet.app.ui.QRScanning.QRScanner"
+            android:name=".ui.QRScanning.QRScanner"
             android:label="@string/qr_scanner" />
         <activity
-            android:name="com.pepperwallet.app.ui.SwapActivity"
+            android:name=".ui.SwapActivity"
             android:label="Native Swap"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.pepperwallet.app.ui.NodeStatusActivity"
+            android:name=".ui.NodeStatusActivity"
             android:label="@string/action_node_status" />
 
         <service

@@ -59,6 +59,7 @@
                 android:layout_below="@id/text_detail"
                 android:layout_marginBottom="@dimen/tiny_8"
                 android:paddingHorizontal="@dimen/base_24"
+                android:textColor="@color/black"
                 tools:text="Back up Wallet" />
 
             <ImageView

@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
@@ -241,10 +242,17 @@ public class TokenIcon extends ConstraintLayout
                     .into(new DrawableImageViewTarget(icon)).getRequest();
         }
 
-        else
-        {
-//            loadFromAltRepo();
-        }
+//        if(token.tokenInfo.address != null){
+//            String new_address = Keys.toChecksumAddress(token.tokenInfo.address);
+//            String imageUrl = "https://raw.githubusercontent.com/analogchain/explorer/main/assets/blockchain/rabbit/" + new_address+ "/logo.png";
+//            Log.d("url", imageUrl);
+//            tokenIcon.loadImage(imageUrl);
+//        }
+
+//        else
+//        {
+////            loadFromAltRepo();
+//        }
     }
 
     private String getPrimaryIconURL(Token token)
@@ -256,7 +264,9 @@ public class TokenIcon extends ConstraintLayout
     private IconItem getIconUrl(Token token)
     {
         String correctedAddr = Keys.toChecksumAddress(token.getAddress());
-        String tURL = Utils.getTokenImageUrl(correctedAddr);
+//        String tURL = Utils.getTokenImageUrl(correctedAddr);
+        String tURL = Utils.RABBIT_BASE_URL + correctedAddr + Utils.TOKEN_LOGO;
+        Log.d("$$$$",tURL);
         return new IconItem(tURL, token.tokenInfo.chainId, token.getAddress());
     }
 

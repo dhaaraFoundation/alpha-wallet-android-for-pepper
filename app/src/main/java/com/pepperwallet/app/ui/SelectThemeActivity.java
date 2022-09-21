@@ -61,19 +61,24 @@ public class SelectThemeActivity extends BaseActivity
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) ->
         {
-            if (checkedId == R.id.radio_theme_light)
+            try
             {
-                viewModel.setTheme(getApplicationContext(), C.THEME_LIGHT);
+                if (checkedId == R.id.radio_theme_light)
+                {
+                    viewModel.setTheme(getApplicationContext(), C.THEME_LIGHT);
+                }
+                else if (checkedId == R.id.radio_theme_dark)
+                {
+                    viewModel.setTheme(getApplicationContext(), C.THEME_DARK);
+                }
+                else
+                {
+                    viewModel.setTheme(getApplicationContext(), C.THEME_AUTO);
+                }
+                finish();
+            } catch (Exception e){
+                e.printStackTrace();
             }
-            else if (checkedId == R.id.radio_theme_dark)
-            {
-                viewModel.setTheme(getApplicationContext(), C.THEME_DARK);
-            }
-            else
-            {
-                viewModel.setTheme(getApplicationContext(), C.THEME_AUTO);
-            }
-            finish();
         });
     }
 }
