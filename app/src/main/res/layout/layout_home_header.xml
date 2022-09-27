@@ -12,54 +12,53 @@
         android:layout_height="wrap_content"
         android:id="@+id/rr_top">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/dp5"
+        android:background="@drawable/home_bg"
+        android:layout_margin="@dimen/dp10"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
+        <com.pepperwallet.app.widget.UserAvatar
+            android:id="@+id/user_address_blockie"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="@dimen/dp10"
+            android:visibility="visible" />
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginEnd="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp10"
-            android:background="@drawable/home_bg"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp5">
+            android:layout_toRightOf="@+id/user_address_blockie"
+            android:orientation="vertical">
 
-
-            <com.pepperwallet.app.widget.UserAvatar
-                android:id="@+id/user_address_blockie"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="@dimen/dp10"
-                android:visibility="visible" />
-
-            <LinearLayout
+            <com.pepperwallet.app.widget.LargeTitleView
+                android:id="@+id/large_title_view"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/user_address_blockie"
-                android:orientation="vertical">
-
-                <com.pepperwallet.app.widget.LargeTitleView
-                    android:id="@+id/large_title_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:gravity="start" />
-            </LinearLayout>
-
-
+                android:gravity="start"
+                android:layout_gravity="start"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <ImageView
+
+
+    </LinearLayout>
+
+        <ImageButton
             android:id="@+id/action_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/dp10"
-            android:layout_toStartOf="@+id/action_my_wallet"
+            android:layout_toLeftOf="@+id/action_my_wallet"
+            android:background="@color/bottom_bg"
             android:padding="@dimen/dp5"
             android:src="@drawable/ic_camera_scan" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/action_my_wallet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,6 +66,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/dp10"
+            android:background="@color/bottom_bg"
             android:padding="@dimen/dp5"
             android:src="@drawable/ic_menu"
             android:visibility="visible" />
