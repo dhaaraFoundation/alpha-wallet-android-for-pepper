@@ -3,7 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?android:colorBackground">
+
+<!--    <com.hanks.passcodeview.PasscodeView-->
+<!--        android:id="@+id/passcodeview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/bottom_selected_bg"-->
+<!--        app:correctStateColor="@color/light_green_1"-->
+<!--        app:firstInputTip="Enter a passcode of 5 digits "-->
+<!--        app:normalStateColor="#ffffff"-->
+<!--        app:numberTextColor="@color/bottom_selected_bg"-->
+<!--        app:passcodeLength="5"-->
+<!--        app:passcodeViewType="set_passcode"-->
+<!--        app:wrongStateColor="#ea2b46" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,6 +25,8 @@
         android:layout_above="@id/layout_new_wallet"
         android:layout_alignParentTop="true"
         android:gravity="center"
+        android:id="@+id/layout1"
+        android:visibility="visible"
         android:orientation="vertical">
 
         <ImageView

@@ -33,7 +33,8 @@
 	<color name="green">#75b943</color>
 	<color name="emerald">#53d76b</color>
 	<color name="danger">#ff3b30</color>
-    <color name="bottom_bg">#B9D7C6</color>
+    <color name="bottom_bg">#C7E1D5</color>
+<!--    <color name="bottom_bg">#E6F8F0</color>-->
     <color name="bottom_selected_bg">#0B863D</color>
 	<color name="radical">#fc3159</color>
 	<color name="pumpkin">#fd9426</color>

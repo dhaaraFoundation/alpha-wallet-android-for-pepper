@@ -71,6 +71,7 @@ import com.pepperwallet.app.service.NotificationService;
 import com.pepperwallet.app.service.PriceAlertsService;
 import com.pepperwallet.app.ui.widget.entity.PagerCallback;
 import com.pepperwallet.app.util.LocaleUtils;
+import com.pepperwallet.app.util.PreferenceManager;
 import com.pepperwallet.app.util.UpdateUtils;
 import com.pepperwallet.app.util.Utils;
 import com.pepperwallet.app.viewmodel.BaseNavigationActivity;
@@ -192,6 +193,7 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
         LocaleUtils.setDeviceLocale(getBaseContext());
         super.onCreate(savedInstanceState);
         LocaleUtils.setActiveLocale(this);
+//        gotoPasscode();
         getLifecycle().addObserver(this);
         isForeground = true;
 
@@ -204,7 +206,14 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
         viewModel.setCurrencyAndLocale(this);
         viewModel.tryToShowWhatsNewDialog(this);
         setContentView(R.layout.activity_home);
-
+        PreferenceManager.init(this);
+        findViewById(R.id.RR).setVisibility(View.VISIBLE);
+        if(getIntent().getExtras() != null){
+            findViewById(R.id.RR).setVisibility(View.GONE);
+        }
+//        if(!PreferenceManager.getBoolValue(C.LOCK)){
+//            gotoPasscode("FirstTime");
+//        }
         initViews();
         toolbar();
 
@@ -242,14 +251,23 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
         viewModel.backUpMessage().observe(this, this::onBackup);
         viewModel.splashReset().observe(this, this::onRequireInit);
 
+//        else {
+//            PreferenceManager.setBoolValue(C.LOCK, true);
+//        }
+
+
+
         if (CustomViewSettings.hideDappBrowser())
         {
             removeDappBrowser();
         }
 
+
         KeyboardVisibilityEvent.setEventListener(
                 this, isOpen ->
                 {
+                    try
+                    {
                     if (isOpen)
                     {
                         setNavBarVisibility(View.GONE);
@@ -260,7 +278,11 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
                         setNavBarVisibility(View.VISIBLE);
                         getFragment(WalletPage.values()[viewPager.getCurrentItem()]).softKeyboardGone();
                     }
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
                 });
+
 
         viewModel.tryToShowRateAppDialog(this);
         viewModel.tryToShowEmailPrompt(this, successOverlay, handler, this);
@@ -299,6 +321,19 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
 
         Intent i = new Intent(this, PriceAlertsService.class);
         startService(i);
+//        if(PreferenceManager.getBoolValue(C.LOCK)){
+////            gotoPasscode();
+//        }
+    }
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        findViewById(R.id.RR).setVisibility(View.GONE);
+//        if(PreferenceManager.getBoolValue(C.LOCK)){
+//            gotoPasscode("Home");
+//        }
+
     }
 
     private void setupFragmentListeners()
@@ -401,6 +436,7 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
     {
         Intent intent = new Intent(this, SplashActivity.class);
         startActivity(intent);
+//        findViewById(R.id.RR).setVisibility(View.GONE);
         finish();
     }
 
@@ -677,31 +713,36 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
 
     private void checkWarnings()
     {
-        if (updatePrompt)
+        try
         {
-            hideDialog();
-            updatePrompt = false;
-            int warns = viewModel.getUpdateWarnings() + 1;
-            if (warns < 3)
+            if (updatePrompt)
             {
-                AWalletConfirmationDialog cDialog = new AWalletConfirmationDialog(this);
-                cDialog.setTitle(R.string.alphawallet_update);
-                cDialog.setCancelable(true);
-                cDialog.setSmallText("Using an old version of Alphawallet. Please update from the Play Store or Alphawallet website.");
-                cDialog.setPrimaryButtonText(R.string.ok);
-                cDialog.setPrimaryButtonListener(v ->
+                hideDialog();
+                updatePrompt = false;
+                int warns = viewModel.getUpdateWarnings() + 1;
+                if (warns < 3)
                 {
-                    cDialog.dismiss();
-                });
-                dialog = cDialog;
-                dialog.show();
-            }
-            else if (warns > 10)
-            {
-                warns = 0;
-            }
+                    AWalletConfirmationDialog cDialog = new AWalletConfirmationDialog(this);
+                    cDialog.setTitle(R.string.alphawallet_update);
+                    cDialog.setCancelable(true);
+                    cDialog.setSmallText("Using an old version of Alphawallet. Please update from the Play Store or Alphawallet website.");
+                    cDialog.setPrimaryButtonText(R.string.ok);
+                    cDialog.setPrimaryButtonListener(v ->
+                    {
+                        cDialog.dismiss();
+                    });
+                    dialog = cDialog;
+                    dialog.show();
+                }
+                else if (warns > 10)
+                {
+                    warns = 0;
+                }
 
-            viewModel.setUpdateWarningCount(warns);
+                viewModel.setUpdateWarningCount(warns);
+            }
+        } catch (Exception e){
+            e.printStackTrace( );
         }
     }
 
@@ -799,41 +840,51 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
      */
     public void resetFragment(WalletPage fragmentId)
     {
-        Fragment fragment = getFragment(fragmentId);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .detach(fragment)
-                .attach(fragment)
-                .commitAllowingStateLoss();
+        try
+        {
+            Fragment fragment = getFragment(fragmentId);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .detach(fragment)
+                    .attach(fragment)
+                    .commitAllowingStateLoss();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void loadingComplete()
     {
-        int lastId = viewModel.getLastFragmentId();
-        if (!TextUtils.isEmpty(openLink)) //delayed open link from intent - safe now that all fragments have been initialised
+        try
         {
-            showPage(DAPP_BROWSER);
-            DappBrowserFragment dappFrag = (DappBrowserFragment) getFragment(DAPP_BROWSER);
-            if (!dappFrag.isDetached())
+            int lastId = viewModel.getLastFragmentId();
+            if (!TextUtils.isEmpty(openLink)) //delayed open link from intent - safe now that all fragments have been initialised
+            {
+                showPage(DAPP_BROWSER);
+                DappBrowserFragment dappFrag = (DappBrowserFragment) getFragment(DAPP_BROWSER);
+                if (!dappFrag.isDetached())
 //                dappFrag.loadDirect(openLink);
-            openLink = null;
-            viewModel.storeCurrentFragmentId(-1);
-        }
-        else if (getIntent().getBooleanExtra(C.Key.FROM_SETTINGS, false))
-        {
-            showPage(SETTINGS);
-        }
-        else if (lastId >= 0 && lastId < WalletPage.values().length)
-        {
-            showPage(WalletPage.values()[lastId]);
-            viewModel.storeCurrentFragmentId(-1);
-        }
-        else
-        {
-            showPage(WALLET);
-            getFragment(WALLET).comeIntoFocus();
+                    openLink = null;
+                viewModel.storeCurrentFragmentId(-1);
+            }
+            else if (getIntent().getBooleanExtra(C.Key.FROM_SETTINGS, false))
+            {
+                showPage(SETTINGS);
+            }
+            else if (lastId >= 0 && lastId < WalletPage.values().length)
+            {
+                showPage(WalletPage.values()[lastId]);
+                viewModel.storeCurrentFragmentId(-1);
+            }
+            else
+            {
+                showPage(WALLET);
+                getFragment(WALLET).comeIntoFocus();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -880,6 +931,7 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
 
     private BaseFragment getFragment(WalletPage page)
     {
+
         //build map, return correct fragment.
         if (getSupportFragmentManager().getFragments().size() < page.ordinal())
         {
@@ -896,7 +948,9 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
                     return (BaseFragment) settingsFragment;
             }
         }
-        else return (BaseFragment) getSupportFragmentManager().getFragments().get(page.ordinal());
+        else
+            return (BaseFragment) walletFragment;
+//            return (BaseFragment) getSupportFragmentManager().getFragments().get(page.ordinal());
     }
 
     @Override
@@ -1251,4 +1305,6 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
             Timber.tag("Intent").w(e);
         }
     }
+
+
 }

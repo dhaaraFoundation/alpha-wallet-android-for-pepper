@@ -97,8 +97,20 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimary">@color/light_green_1</item>
+        <item name="colorPrimaryDark">@color/light_green_1</item>
+        <item name="android:navigationBarColor">@color/light_green_1</item>
     </style>
 
+<!--    <style name="PepperWallet.Theme" parent="Theme.AppCompat.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        <item name="colorPrimary">@color/light_green_1</item>-->
+<!--        <item name="colorPrimaryDark">@color/bottom_selected_bg</item>-->
+<!--        <item name="android:navigationBarColor">@color/bottom_selected_bg</item>-->
+<!--    </style>-->
     <style name="AppTheme.NoActionBar.Splash">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>

@@ -1,6 +1,7 @@
 package com.pepperwallet.app.ui.widget.adapter;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -473,7 +474,8 @@ public class TokensAdapter extends RecyclerView.Adapter<BinderViewHolder> {
             }
         }
 
-        populateTokens(filterTokens.toArray(new TokenCardMeta[0]), true);
+
+        populateTokens(filterTokens.toArray(new TokenCardMeta[1]), true);
     }
 
     public void setFilterType(TokenFilter filterType)
@@ -560,6 +562,8 @@ public class TokensAdapter extends RecyclerView.Adapter<BinderViewHolder> {
             Object si = items.get(i);
             if (si instanceof TokenSortedItem)
             {
+                Log.d("si",si.toString());
+                Log.d("si",((TokenSortedItem) si).value.tokenId.toString());
                 TokenCardMeta tcm = ((TokenSortedItem) si).value;
                 if (tcm.isEnabled) selected.add(tcm);
             }

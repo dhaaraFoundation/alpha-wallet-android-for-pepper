@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -27,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp10"
             android:weightSum="3.02"
-            android:background="@drawable/home_bg"
+            android:background="@drawable/layout_home"
             android:orientation="horizontal">
 
             <TextView
@@ -78,14 +80,14 @@
             android:layout_marginRight="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
             app:tabIndicator="@null"
-            app:tabSelectedTextColor="@color/black"
+            app:tabSelectedTextColor="@color/background_inverse"
             app:tabIndicatorHeight="0dp"
             android:clickable="false"
             app:tabTextColor="@color/bottom_selected_bg"
             android:scrollbars="none"
-            android:background="@drawable/home_upper_bg"
             />
 
+<!--        app:tabBackground="@drawable/tab_color_selector"-->
         <View style="@style/Aw.Component.Separator"
             android:visibility="gone"/>
 
@@ -109,7 +111,8 @@
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/home_bottom_bg" />
+            android:background="@drawable/home_bottom_bg"
+            tools:listitem="@layout/item_token"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -127,5 +130,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?actionBarSize"
         tools:visibility="gone" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

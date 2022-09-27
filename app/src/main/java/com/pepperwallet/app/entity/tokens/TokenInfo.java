@@ -18,7 +18,7 @@ public class TokenInfo implements Parcelable {
         }
         if (address != null)
         {
-            this.address = address.toLowerCase();
+            this.address = address;
         }
         else
         {

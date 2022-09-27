@@ -127,7 +127,7 @@ public class NewSettingsFragment extends BaseFragment
     private LinearLayout supportSettingsLayout;
     private SettingsItemView generalsetting;
     private SettingsItemView walletsetting;
-    private SettingsItemView myAddressSetting;
+//    private SettingsItemView myAddressSetting;
     private SettingsItemView changeWalletSetting;
     private SettingsItemView backUpWalletSetting;
     private SettingsItemView notificationsSetting;
@@ -255,12 +255,12 @@ public class NewSettingsFragment extends BaseFragment
                         .withListener(this::onWalletSettingClicked)
                         .build();
 
-        myAddressSetting =
-                new SettingsItemView.Builder(getContext())
-                        .withIcon(R.drawable.ic_settings_wallet_address)
-                        .withTitle(R.string.title_show_wallet_address)
-                        .withListener(this::onShowWalletAddressSettingClicked)
-                        .build();
+//        myAddressSetting =
+//                new SettingsItemView.Builder(getContext())
+//                        .withIcon(R.drawable.ic_settings_wallet_address)
+//                        .withTitle(R.string.title_show_wallet_address)
+//                        .withListener(this::onShowWalletAddressSettingClicked)
+//                        .build();
 
         changeWalletSetting =
                 new SettingsItemView.Builder(getContext())
@@ -399,15 +399,15 @@ public class NewSettingsFragment extends BaseFragment
 
         walletSettingsLayout.addView(generalsetting, walletIndex++);
         walletSettingsLayout.addView(walletsetting, walletIndex++);
-        walletSettingsLayout.addView(myAddressSetting, walletIndex++);
+//        walletSettingsLayout.addView(myAddressSetting, walletIndex++);
 
 //        if (CustomViewSettings.canChangeWallets())
 //            walletSettingsLayout.addView(changeWalletSetting, walletIndex++);
 
-        walletSettingsLayout.addView(backUpWalletSetting, walletIndex++);
+//        walletSettingsLayout.addView(backUpWalletSetting, walletIndex++);
 
-        walletSettingsLayout.addView(showSeedPhrase, walletIndex++);
-        showSeedPhrase.setVisibility(View.GONE);
+//        walletSettingsLayout.addView(showSeedPhrase, walletIndex++);
+//        showSeedPhrase.setVisibility(View.GONE);
 
 //        walletSettingsLayout.addView(nameThisWallet, walletIndex++);
 

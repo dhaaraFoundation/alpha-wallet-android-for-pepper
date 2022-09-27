@@ -1,6 +1,7 @@
 package com.pepperwallet.app.widget;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -13,6 +14,8 @@ import com.pepperwallet.app.entity.tokens.Token;
 import com.pepperwallet.app.service.TickerService;
 import com.pepperwallet.app.service.TokensService;
 
+import org.web3j.crypto.Keys;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -22,6 +25,7 @@ public class TokenInfoHeaderView extends LinearLayout {
     private final TextView symbol;
     private final TextView marketValue;
     private final TextView priceChange;
+    private   TokenIcon token_icon;
 
     public TokenInfoHeaderView(Context context)
     {
@@ -37,8 +41,16 @@ public class TokenInfoHeaderView extends LinearLayout {
     public TokenInfoHeaderView(Context context, Token token, TokensService svs)
     {
         this(context);
-        icon.bindData(token, svs);
-        if (!token.isEthereum()) icon.setChainIcon(token.tokenInfo.chainId);
+//        icon.bindData(token, svs);
+        String new_address = Keys.toChecksumAddress(token.tokenInfo.address);
+        Log.d("new_address", new_address);
+        if (new_address != null)
+        {
+            String imageUrl = "https://raw.githubusercontent.com/analogchain/explorer/main/assets/blockchain/rabbit/" + new_address+ "/logo.png";
+            Log.d("url", imageUrl);
+            icon.loadImage(imageUrl);
+        }
+//        if (!token.isEthereum()) icon.setChainIcon(token.tokenInfo.chainId);// used for small icon
         setAmount(token.getFixedFormattedBalance());
         setSymbol(token.tokenInfo.symbol);
         //obtain from ticker

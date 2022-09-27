@@ -4,11 +4,14 @@ import static androidx.core.content.ContextCompat.getColorStateList;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,9 +41,15 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.bumptech.glide.request.target.Target;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 import org.web3j.crypto.Keys;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class TokenIcon extends ConstraintLayout
 {
@@ -78,6 +87,7 @@ public class TokenIcon extends ConstraintLayout
         currentStatus = StatusType.NONE;
         chainIcon = findViewById(R.id.status_chain_icon);
         chainIconBackground = findViewById(R.id.chain_icon_background);
+        chainIcon.setVisibility(GONE);
 
         bindViews();
     }
@@ -110,6 +120,12 @@ public class TokenIcon extends ConstraintLayout
         layout.setOnClickListener(this::performTokenClick);
     }
 
+    public void loadImage(String url) {
+        Picasso.get()
+                .load(url)
+                .error(R.drawable.analog_favicon)
+                .into(icon);
+    }
     public void clearLoad()
     {
         handler.removeCallbacks(null);
@@ -197,10 +213,10 @@ public class TokenIcon extends ConstraintLayout
         {
             loadImageFromResource(EthereumNetworkRepository.getChainLogo(token.tokenInfo.chainId));
         }
-        else
-        {
-            setupTextIcon(token);
-        }
+//        else
+//        {
+//            setupTextIcon(token);
+//        }
     }
 
     /**
@@ -218,17 +234,25 @@ public class TokenIcon extends ConstraintLayout
         {
             final RequestOptions optionalCircleCrop = squareToken || iconItem.getUrl().startsWith(Utils.ALPHAWALLET_REPO_NAME) ? new RequestOptions() : new RequestOptions().circleCrop();
 
-            currentRq = Glide.with(this)
+            currentRq  = Glide.with(this)
                     .load(iconItem.getUrl())
-                    .placeholder(R.drawable.ic_token_eth)
+                    .placeholder(R.drawable.analog_favicon)
                     .apply(optionalCircleCrop)
                     .listener(requestListener)
                     .into(new DrawableImageViewTarget(icon)).getRequest();
         }
-        else
-        {
-            loadFromAltRepo();
-        }
+
+//        if(token.tokenInfo.address != null){
+//            String new_address = Keys.toChecksumAddress(token.tokenInfo.address);
+//            String imageUrl = "https://raw.githubusercontent.com/analogchain/explorer/main/assets/blockchain/rabbit/" + new_address+ "/logo.png";
+//            Log.d("url", imageUrl);
+//            tokenIcon.loadImage(imageUrl);
+//        }
+
+//        else
+//        {
+////            loadFromAltRepo();
+//        }
     }
 
     private String getPrimaryIconURL(Token token)
@@ -240,7 +264,9 @@ public class TokenIcon extends ConstraintLayout
     private IconItem getIconUrl(Token token)
     {
         String correctedAddr = Keys.toChecksumAddress(token.getAddress());
-        String tURL = Utils.getTokenImageUrl(correctedAddr);
+//        String tURL = Utils.getTokenImageUrl(correctedAddr);
+        String tURL = Utils.RABBIT_BASE_URL + correctedAddr + Utils.TOKEN_LOGO;
+        Log.d("$$$$",tURL);
         return new IconItem(tURL, token.tokenInfo.chainId, token.getAddress());
     }
 
@@ -289,7 +315,7 @@ public class TokenIcon extends ConstraintLayout
 
         currentRq = Glide.with(this)
                 .load(this.fallbackIconUrl)
-                .placeholder(R.drawable.ic_token_eth)
+                .placeholder(R.drawable.analog_favicon)
                 .apply(optionalCircleCrop)
                 .listener(requestListenerTW)
                 .into(new DrawableImageViewTarget(icon)).getRequest();
@@ -302,6 +328,8 @@ public class TokenIcon extends ConstraintLayout
     private void setupTextIcon(@NotNull Token token)
     {
         icon.setImageResource(R.drawable.ic_clock);
+//        String imageUrl = "https://raw.githubusercontent.com/analogchain/explorer/main/assets/blockchain/rabbit/"+token.tokenInfo.address+"/logo.png";
+//        updateIcon(imageUrl);
         textIcon.setVisibility(View.VISIBLE);
         textIcon.setBackgroundTintList(getColorStateList(getContext(), EthereumNetworkBase.getChainColour(token.tokenInfo.chainId)));
         //try symbol first

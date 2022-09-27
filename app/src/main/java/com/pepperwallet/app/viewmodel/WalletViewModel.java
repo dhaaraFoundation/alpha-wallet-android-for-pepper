@@ -231,7 +231,7 @@ public class WalletViewModel extends BaseViewModel
     public void recieverAddress(Context context){
         Log.d("defaultWallet",defaultWallet.getValue().address.toString());
         myAddressRouter.open(context, defaultWallet.getValue());
-        Toast.makeText(context, defaultWallet.getValue().toString(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, defaultWallet.getValue().toString(), Toast.LENGTH_SHORT).show();
     }
     public void showMyAddress(Context context)
     {
@@ -254,6 +254,7 @@ public class WalletViewModel extends BaseViewModel
         actionsView.setOnAddHideTokensClickListener(v -> {
             dialog.dismiss();
             Intent intent = new Intent(context, TokenManagementActivity.class);
+            Log.d("address",getWalletAddr());
             intent.putExtra(EXTRA_ADDRESS, getWalletAddr());
             context.startActivity(intent);
         });
@@ -405,4 +406,5 @@ public class WalletViewModel extends BaseViewModel
         intent.putExtra(C.DAPP_URL_LOAD, onRampRepository.getUri(address, null));
         return intent;
     }
+
 }

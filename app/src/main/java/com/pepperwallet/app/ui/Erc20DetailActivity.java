@@ -130,7 +130,7 @@ public class Erc20DetailActivity extends BaseActivity implements StandardFunctio
         setUpRecentTransactionsView();
     }
 
-    private void initViews()
+    private void  initViews()
     {
         Bundle bundle = new Bundle();
         //Samoa TODO: Use TokensService getToken in the 3 fragments

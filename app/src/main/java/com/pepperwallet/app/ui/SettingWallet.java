@@ -217,6 +217,7 @@ public class SettingWallet
     {
         try
         {
+            Wallet wallet = new_wallet;
 //            Log.d("wallet_value", viewModel.defaultWallet().getValue().toString());
 //            Wallet wallet = viewModel.defaultWallet().getValue();
             if (wallet != null)

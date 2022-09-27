@@ -2,6 +2,7 @@ package com.pepperwallet.app.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -60,7 +61,8 @@ public class AddTokenViewModel extends BaseViewModel {
     private boolean foundNetwork;
     private int networkCount;
     private long primaryChainId = 1;
-    private final List<Token> discoveredTokenList = new ArrayList<>();
+    public final List<Token> discoveredTokenList = new ArrayList<>();
+
 
     public MutableLiveData<Wallet> wallet() {
         return wallet;
@@ -94,9 +96,12 @@ public class AddTokenViewModel extends BaseViewModel {
         this.sharedPreference = sharedPreference;
     }
 
+
     public void saveTokens(List<Token> toSave)
     {
+        Log.d("data",toSave.toString());
         tokensService.addTokens(toSave);
+//        getTokenList();
     }
 
     @Override
@@ -158,6 +163,8 @@ public class AddTokenViewModel extends BaseViewModel {
     }
 
     private void onTokensSetup(TokenInfo info) {
+//        findWallet();
+        Log.d("address", wallet.getValue().address);
         disposable = tokensService.addToken(info, wallet.getValue().address)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -168,7 +175,16 @@ public class AddTokenViewModel extends BaseViewModel {
     {
         checkNetworkCount();
         discoveredTokenList.add(token);
+//        getTokenList();
+        Log.d("token_list",discoveredTokenList.toString());
         onToken.postValue(token);
+        saveTokens(discoveredTokenList);
+    }
+
+
+
+    public List<Token> getTokenList(){
+        return discoveredTokenList;
     }
 
     private void tokenTypeError(Throwable throwable, TokenInfo data)
@@ -226,6 +242,8 @@ public class AddTokenViewModel extends BaseViewModel {
 
     public void testNetworks(String address)
     {
+
+        Log.d("address",address);
         foundNetwork = false;
         discoveredTokenList.clear();
         networkCount = ethereumNetworkRepository.getAvailableNetworkList().length;
@@ -243,6 +261,8 @@ public class AddTokenViewModel extends BaseViewModel {
                     .subscribe(type -> testNetworkResult(tokenInfo, type), this::onTestError);
 
             scanThreads.add(d);
+            Log.d("address",String.valueOf(scanThreads.size()));
+            Log.d("address",scanThreads.get(0).toString());
         }
     }
 
@@ -254,6 +274,8 @@ public class AddTokenViewModel extends BaseViewModel {
             disposable = tokensService
                     .update(info.address, info.chainId)
                     .subscribe(this::onTokensSetup, error -> checkType(error, info.chainId, info.address, type));
+            Log.d("address",info.address.toString()+"/n"+info.chainId);
+            Log.d("address",info.address.toString()+"/n"+info.chainId);
         }
         else
         {

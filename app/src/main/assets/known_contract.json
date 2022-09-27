@@ -2,6 +2,8 @@
 "MainNet":
   [
     {"address": "0x056fd409e1d7a124bd7017459dfea2f387b6d5cd", "isPopular": true, "network": 1},
+    {"address": "0x910439b4855c3f45624ca2154778f13ff2d3243e", "isPopular": true, "network": 1},
+    {"address": "0x77f663c7de367821708b9dcdd2681bbc3317025a", "isPopular": true, "network": 1},
     {"address": "0x8e870d67f660d95d5be530380d0ec0bd388289e1", "isPopular": true, "network": 1},
     {"address": "0x0000000000085d4780B73119b644AE5ecd22b376", "isPopular": true, "network": 1},
     {"address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", "isPopular": true, "network": 1},

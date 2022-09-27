@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_green_1"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_above="@+id/tab_layout"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginEnd="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/skip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp15"
+        android:background="@color/light_green_1"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
+
+    <TextView
+        android:id="@+id/skip"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp20"
+        android:background="@drawable/button_bg"
+        android:fontFamily="@font/font_semibold"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/skip_login"
+        android:textAllCaps="true"
+        android:textColor="@color/bottom_selected_bg"
+        android:textSize="@dimen/sp14" />
+</RelativeLayout>

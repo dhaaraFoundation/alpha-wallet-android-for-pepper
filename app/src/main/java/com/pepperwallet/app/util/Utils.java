@@ -73,11 +73,13 @@ public class Utils {
     private static final String ISOLATE_NUMERIC = "(0?x?[0-9a-fA-F]+)";
     private static final String ICON_REPO_ADDRESS_TOKEN = "[TOKEN]";
     private static final String CHAIN_REPO_ADDRESS_TOKEN = "[CHAIN]";
-    private static final String TOKEN_LOGO = "/logo.png";
+
+    public static final String RABBIT_BASE_URL = "https://raw.githubusercontent.com/analogchain/explorer/main/assets/blockchain/rabbit/";
+    public static final String TOKEN_LOGO = "/logo.png";
     public  static final String ALPHAWALLET_REPO_NAME = "https://raw.githubusercontent.com/alphawallet/iconassets/lowercased/";
     private static final String TRUST_ICON_REPO_BASE = "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/";
     private static final String TRUST_ICON_REPO = TRUST_ICON_REPO_BASE + CHAIN_REPO_ADDRESS_TOKEN + "/assets/" + ICON_REPO_ADDRESS_TOKEN + TOKEN_LOGO;
-    private static final String ALPHAWALLET_ICON_REPO = ALPHAWALLET_REPO_NAME + ICON_REPO_ADDRESS_TOKEN + TOKEN_LOGO;
+    private static final String ALPHAWALLET_ICON_REPO = RABBIT_BASE_URL + ICON_REPO_ADDRESS_TOKEN + TOKEN_LOGO;
 
     public static int dp2px(Context context, int dp) {
         Resources r = context.getResources();
